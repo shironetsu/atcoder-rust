@@ -15,7 +15,7 @@ fn main() {
     A.push(0);
     A.push(0);
     //for &[i, j, k] in (0..N).combinations(3).map(|c|{c.as_slice()}) {
-    for (i, j, k) in (0..N+2).tuple_combinations() {
+    for (i, j, k) in (0..N + 2).tuple_combinations() {
         let w = A[i] + A[j] + A[k];
         if w <= W {
             s.insert(w);
