@@ -1,5 +1,4 @@
 use proconio::input;
-use std::fmt::Write;
 
 #[allow(non_snake_case)]
 fn main() {
@@ -11,7 +10,7 @@ fn main() {
     }
 
     if D == 0 {
-        println!("{}", (X-A).abs());
+        println!("{}", (X - A).abs());
         return;
     }
 
