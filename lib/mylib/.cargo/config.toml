@@ -1,0 +1,3 @@
+[alias]
+# gen = "snippet -tvscode --out-dir=../../.vscode/cargo-snippet.code-snippets"
+# gen = "snippet -tvscode"

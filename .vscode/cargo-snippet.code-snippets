@@ -1,0 +1,38 @@
+{
+  "change": {
+    "prefix": "change",
+    "body": [
+      "pub trait Change<T: PartialOrd> {",
+      "    fn chmin(&mut self, rhs: Self) -> bool;",
+      "    fn chmax(&mut self, rhs: Self) -> bool;",
+      "}",
+      "impl<T: PartialOrd> Change<T> for T {",
+      "    fn chmax(&mut self, rhs: Self) -> bool {",
+      "        if *self < rhs {",
+      "            *self = rhs;",
+      "            true",
+      "        } else {",
+      "            false",
+      "        }",
+      "    }",
+      "    fn chmin(&mut self, rhs: Self) -> bool {",
+      "        if *self > rhs {",
+      "            *self = rhs;",
+      "            true",
+      "        } else {",
+      "            false",
+      "        }",
+      "    }",
+      "}"
+    ]
+  },
+  "change-trait": {
+    "prefix": "change-trait",
+    "body": [
+      "pub trait Change<T: PartialOrd> {",
+      "    fn chmin(&mut self, rhs: Self) -> bool;",
+      "    fn chmax(&mut self, rhs: Self) -> bool;",
+      "}"
+    ]
+  }
+}
