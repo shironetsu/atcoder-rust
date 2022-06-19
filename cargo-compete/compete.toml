@@ -22,15 +22,21 @@ open = '[["code", "-a", .manifest_dir], ["code"] + (.paths | map([.src, .test_su
 
 [template]
 src = '''
-use proconio::input;
+#![allow(unused_imports)]
+#![allow(non_snake_case)]
+use proconio::{input, fastout};
+use proconio::marker::{Bytes, Chars, Isize1, Usize1};
+use std::fmt::Write;
+use std::collections::*;
+use maplit::*;
 
-#[allow(non_snake_case)]
+#[fastout]
 fn main() {
     input!{
         
     }
 
-    todo!();
+    
 }
 '''
 
