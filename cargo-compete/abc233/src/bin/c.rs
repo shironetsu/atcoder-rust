@@ -1,4 +1,3 @@
-use maplit;
 #[allow(unused_imports)]
 use proconio::input;
 use std::collections::*;
