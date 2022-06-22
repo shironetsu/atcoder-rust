@@ -21,8 +21,8 @@ fn main() {
         ans += count;
     }
 
-    if K == 0{
-        ans -= N+1;
+    if K == 0 {
+        ans -= N + 1;
     }
 
     println!("{}", ans);
