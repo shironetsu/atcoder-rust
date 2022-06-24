@@ -1,6 +1,6 @@
+use itertools::*;
 use num_integer;
 use proconio::input;
-use std::fmt::Write;
 
 #[allow(non_snake_case)]
 fn main() {
@@ -8,17 +8,22 @@ fn main() {
         N: u64,
     }
 
-    let mut r = (1..=N).collect::<Vec<_>>();
-
+    let mut sieve = vec![true; N as usize + 1];
     for i in 2..=num_integer::sqrt(N) {
-        for n in r.iter_mut() {
-            while *n % (i * i) == 0 {
-                *n /= i * i;
+        let ii = i * i;
+        let mut j = ii;
+        loop {
+            sieve[j as usize] = false;
+            j += ii;
+            if j > N {
+                break;
             }
         }
     }
-
-    let ans = r.iter().map(|n| num_integer::sqrt(N / n)).sum::<u64>();
-
+    let square_frees = (1..=N).filter(|&i| sieve[i as usize]).collect_vec();
+    let ans = square_frees
+        .iter()
+        .map(|&k| num_integer::sqrt(N / k).pow(2))
+        .sum::<u64>();
     println!("{}", ans);
 }
