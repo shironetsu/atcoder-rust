@@ -1,4 +1,5 @@
 use cargo_snippet::snippet;
+use std::marker::PhantomData;
 
 #[snippet("segtree-sum")]
 #[snippet(include="sum-impl")]
@@ -29,13 +30,13 @@ pub struct SegmentTree<S: Clone, F: Op<S>> {
     n: usize,
     log: usize,
     size: usize,
-    op: F,
     d: Vec<S>,
+    _marker: PhantomData<F>,
 }
 
 #[snippet("segtree-impl")]
 impl<S: Clone, F: Op<S>> SegmentTree<S, F> {
-    pub fn from(op: F, v: Vec<S>) -> SegmentTree<S, F> {
+    pub fn from(v: Vec<S>) -> SegmentTree<S, F> {
         let n = v.len();
         let log = Self::ceil_pow2(n);
         let size = 1 << log;
@@ -47,8 +48,8 @@ impl<S: Clone, F: Op<S>> SegmentTree<S, F> {
             n,
             log,
             size,
-            op,
             d,
+            _marker: PhantomData
         };
         for i in (1..=(size - 1)).rev() {
             st.update(i);
@@ -82,9 +83,9 @@ impl<S: Clone, F: Op<S>> SegmentTree<S, F> {
             if r & 1 == 1 {
                 r -= 1;
                 smr = F::op(&self.d[r], &smr);
-                l >>= 1;
-                r >>= 1;
             }
+            l >>= 1;
+            r >>= 1;
         }
         F::op(&sml, &smr)
     }
