@@ -4,9 +4,10 @@
 - [qryxip/cargo\-compete: A Cargo subcommand for competitive programming](https://github.com/qryxip/cargo-compete)
 - [2020 Update · rust\-lang\-ja/atcoder\-rust\-resources Wiki](https://github.com/rust-lang-ja/atcoder-rust-resources/wiki/2020-Update)
 
-RustのAC解答のURL
+Rust の AC 解答の URL
 
 例：
+
 ```
 https://atcoder.jp/contests/abc256/submissions?f.Task=abc256_a&f.LanguageName=Rust&f.Status=AC&f.User=
 ```
@@ -30,6 +31,7 @@ let mut v = vec![vec![0;M];N];
 ```
 
 マクロ例：
+
 ```rust
 macro_rules! vvec {
     ($val: expr; $a:expr, $b:expr) => {
@@ -115,6 +117,7 @@ cargo snippet -tvscode > <スニペット.code-snippetsのパス>
 みたいなことができる。
 
 ## グラフ
+
 何回書いたか分からない。スニペットにする。
 
 ```rust
@@ -128,3 +131,43 @@ for (a b) in edges{ //消費してよい
     glaph[b].push(a);
 }
 ```
+
+## 数について
+
+## `lower_bound` と `upper_bound`
+
+`superslice::Ext` から使える。
+
+[superslice::Ext \- Rust](https://docs.rs/superslice/1.0.0/superslice/trait.Ext.html)
+
+`lower_bound(x)`: `x`より小さくない最初の要素のインデックス
+
+`upper_bound(x)`: `x` より大きい最初の要素のインデックス
+
+```
+l  9
+  10
+     11
+        12
+        13
+              14
+              15
+                 16
+a 10 11 13 13 15
+                 16
+                 15
+              14
+              13
+        12
+        11
+     10
+u  9
+```
+
+- 必ず `l <= u`。
+- `l=u` となるのは、配列に `x` が存在しないとき。
+- インデックスが `[l, u)` の範囲が `x` の存在する領域 →`u-l=(xの個数)`。
+    - `equal_range` で `Range` を直接取得できる。
+- 特に、`x` が `a` にちょうど一つ存在するとき、`l=(xのインデックス)`、`u=(xのインデックス+1)`
+- `(-∞, a[0]]` に対して `l=0`。`(-∞, a[0])` に対して `u=0`。
+- `a` の長さを `n` とする。`(a[n-1], ∞)` に対して`l=n`。`[a[n-1], ∞)` に対して `u=n`
