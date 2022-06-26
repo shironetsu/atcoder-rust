@@ -66,3 +66,7 @@ v.sort_by(|a, b| a.partial_cmp(b).unwrap());
 `lower_bound_by_key(&x, |x| OrderdFloat(x))` か、インポートせずに `lower_bound_by(|other| other.partial_cmp(&x).unwrap())` がいいかも。
 
 [superslice::Ext \- Rust](https://docs.rs/superslice/latest/superslice/trait.Ext.html#tymethod.lower_bound_by_key)
+
+## [010 \- Score Sum Queries（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_j)
+
+やるだけ。片方のクラスに生徒がいないとき、仮想的にその番号の生徒がクラスにいて0点だと数えておけばよい。
