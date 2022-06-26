@@ -30,6 +30,7 @@ use std::fmt::Write;
 use std::collections::*;
 use maplit::*;
 use itertools::*;
+use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {

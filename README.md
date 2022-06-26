@@ -171,3 +171,25 @@ u  9
 - 特に、`x` が `a` にちょうど一つ存在するとき、`l=(xのインデックス)`、`u=(xのインデックス+1)`
 - `(-∞, a[0]]` に対して `l=0`。`(-∞, a[0])` に対して `u=0`。
 - `a` の長さを `n` とする。`(a[n-1], ∞)` に対して`l=n`。`[a[n-1], ∞)` に対して `u=n`
+
+## Union-find
+
+```rust
+use petgraph::unionfind::UnionFind;
+
+let mut uf = UnionFind::new(10); //サイズ指定
+let edges = vec![(0,1), (1,2), (2,3), (1,3)];
+for &(a, b) in edges.iter(){
+    if uf.equiv(a, b){
+        uf.unite(a, b);
+    }
+}
+```
+
+- `pub fn new(n: usize) -> Self`: 初期化
+- `pub fn find(&self, x: K) -> K`: 代表元を取得
+- `pub fn equiv(&self, x: K, y: K) -> bool`: 同値判定
+- `pub fn union(&mut self, x: K, y: K) -> bool`: 結合
+- `pub fn into_labeling(self) -> Vec<K>`: 代表元の配列に変換
+
+[UnionFind in petgraph::unionfind \- Rust](https://docs.rs/petgraph/latest/petgraph/unionfind/struct.UnionFind.html)
