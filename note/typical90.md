@@ -70,3 +70,19 @@ v.sort_by(|a, b| a.partial_cmp(b).unwrap());
 ## [010 \- Score Sum Queries（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_j)
 
 やるだけ。片方のクラスに生徒がいないとき、仮想的にその番号の生徒がクラスにいて0点だと数えておけばよい。
+
+## [011 \- Gravy Jobs（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_k)
+
+TODO
+
+## [012 \- Red Painting（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_l)
+
+Union-Find。ある頂点を赤く塗るたびに、上下左右の隣接する頂点で既に塗られているものと繋げる。
+
+`x + !0` で `usize`をパニクらせずに `-1` できる。ただしdebugモードだとオーバーフローする。
+お行儀が良い方法は `.wrapping_add(!0)` だがタイプ数が多い。
+
+## [013 \- Passing（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_m)
+
+始点が 1,$N$ それぞれの場合でDijkstra法。
+
