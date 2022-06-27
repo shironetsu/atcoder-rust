@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "atcoder-rust",
+			"path": ".."
+		},
+		{
+			"name": "abc252",
+			"path": "..\\cargo-compete\\abc252"
+		},
+		{
+			"path": "..\\cargo-compete\\abc236"
+		},
+		{
+			"path": "..\\cargo-compete\\abc256"
+		},
+		{
+			"path": "..\\cargo-compete\\abc230"
+		},
+		{
+			"path": "..\\cargo-compete\\abc257"
+		},
+		{
+			"path": "..\\cargo-compete\\abc250"
+		}
+	],
+	"settings": {}
+}

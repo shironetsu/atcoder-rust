@@ -35,6 +35,28 @@
       "}"
     ]
   },
+  "gcd": {
+    "prefix": "gcd",
+    "body": [
+      "pub fn gcd(a: i64, b: i64, x: &mut i64, y: &mut i64) -> i64 {",
+      "    if a != 0 {",
+      "        let mut d = gcd(b % a, a, x, y);",
+      "        *y -= (b / a) * *x;",
+      "        std::mem::swap(x, y);",
+      "        if d < 0 {",
+      "            d = -d;",
+      "            *x = -*x;",
+      "            *y = -*y;",
+      "        }",
+      "        d",
+      "    } else {",
+      "        *x = 0;",
+      "        *y = 1;",
+      "        b",
+      "    }",
+      "}"
+    ]
+  },
   "lazy_segtre-action": {
     "prefix": "lazy_segtre-action",
     "body": [
@@ -438,75 +460,75 @@
     "prefix": "modint",
     "body": [
       "use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};",
-      "impl Sub<i64> for ModInt998244353 {",
+      "impl Sub<i64> for ModInt {",
       "    type Output = Self;",
       "    fn sub(self, rhs: i64) -> Self {",
       "        let val = (self.val - rhs).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
-      "impl SubAssign for ModInt998244353 {",
+      "impl SubAssign for ModInt {",
       "    fn sub_assign(&mut self, rhs: Self) {",
       "        self.val = (self.val - rhs.val).rem_euclid(Self::MODULO);",
       "    }",
       "}",
-      "impl Sub for ModInt998244353 {",
+      "impl Sub for ModInt {",
       "    type Output = Self;",
       "    fn sub(self, rhs: Self) -> Self {",
       "        let val = (self.val - rhs.val).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
-      "impl Mul<i64> for ModInt998244353 {",
+      "impl Mul<i64> for ModInt {",
       "    type Output = Self;",
       "    fn mul(self, rhs: i64) -> Self {",
       "        let val = (self.val * rhs).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
-      "impl MulAssign for ModInt998244353 {",
+      "impl MulAssign for ModInt {",
       "    fn mul_assign(&mut self, rhs: Self) {",
       "        self.val = (self.val * rhs.val).rem_euclid(Self::MODULO);",
       "    }",
       "}",
-      "impl Mul for ModInt998244353 {",
+      "impl Mul for ModInt {",
       "    type Output = Self;",
       "    fn mul(self, rhs: Self) -> Self {",
       "        let val = (self.val * rhs.val).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
-      "impl ModInt998244353 {",
-      "    const MODULO: i64 = 998244353;",
-      "    pub fn new() -> ModInt998244353 {",
-      "        ModInt998244353 { val: 0 }",
+      "impl ModInt {",
+      "    const MODULO: i64 = 998_244_353;",
+      "    pub fn new() -> ModInt {",
+      "        ModInt { val: 0 }",
       "    }",
-      "    pub fn from(x: i64) -> ModInt998244353 {",
+      "    pub fn from(x: i64) -> ModInt {",
       "        let val = x.rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
-      "impl Add<i64> for ModInt998244353 {",
+      "impl Add<i64> for ModInt {",
       "    type Output = Self;",
       "    fn add(self, rhs: i64) -> Self {",
       "        let val = (self.val + rhs).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
-      "impl AddAssign for ModInt998244353 {",
+      "impl AddAssign for ModInt {",
       "    fn add_assign(&mut self, rhs: Self) {",
       "        self.val = (self.val + rhs.val).rem_euclid(Self::MODULO);",
       "    }",
       "}",
-      "impl Add for ModInt998244353 {",
+      "impl Add for ModInt {",
       "    type Output = Self;",
       "    fn add(self, rhs: Self) -> Self {",
       "        let val = (self.val + rhs.val).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}",
       "#[derive(Clone, Copy)]",
-      "pub struct ModInt998244353 {",
+      "pub struct ModInt {",
       "    val: i64,",
       "}"
     ]
@@ -514,11 +536,11 @@
   "modint-add": {
     "prefix": "modint-add",
     "body": [
-      "impl Add for ModInt998244353 {",
+      "impl Add for ModInt {",
       "    type Output = Self;",
       "    fn add(self, rhs: Self) -> Self {",
       "        let val = (self.val + rhs.val).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]
@@ -526,7 +548,7 @@
   "modint-add-assign": {
     "prefix": "modint-add-assign",
     "body": [
-      "impl AddAssign for ModInt998244353 {",
+      "impl AddAssign for ModInt {",
       "    fn add_assign(&mut self, rhs: Self) {",
       "        self.val = (self.val + rhs.val).rem_euclid(Self::MODULO);",
       "    }",
@@ -536,11 +558,11 @@
   "modint-add-i64": {
     "prefix": "modint-add-i64",
     "body": [
-      "impl Add<i64> for ModInt998244353 {",
+      "impl Add<i64> for ModInt {",
       "    type Output = Self;",
       "    fn add(self, rhs: i64) -> Self {",
       "        let val = (self.val + rhs).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]
@@ -548,14 +570,14 @@
   "modint-impl": {
     "prefix": "modint-impl",
     "body": [
-      "impl ModInt998244353 {",
-      "    const MODULO: i64 = 998244353;",
-      "    pub fn new() -> ModInt998244353 {",
-      "        ModInt998244353 { val: 0 }",
+      "impl ModInt {",
+      "    const MODULO: i64 = 998_244_353;",
+      "    pub fn new() -> ModInt {",
+      "        ModInt { val: 0 }",
       "    }",
-      "    pub fn from(x: i64) -> ModInt998244353 {",
+      "    pub fn from(x: i64) -> ModInt {",
       "        let val = x.rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]
@@ -563,11 +585,11 @@
   "modint-mul": {
     "prefix": "modint-mul",
     "body": [
-      "impl Mul for ModInt998244353 {",
+      "impl Mul for ModInt {",
       "    type Output = Self;",
       "    fn mul(self, rhs: Self) -> Self {",
       "        let val = (self.val * rhs.val).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]
@@ -575,7 +597,7 @@
   "modint-mul-assign": {
     "prefix": "modint-mul-assign",
     "body": [
-      "impl MulAssign for ModInt998244353 {",
+      "impl MulAssign for ModInt {",
       "    fn mul_assign(&mut self, rhs: Self) {",
       "        self.val = (self.val * rhs.val).rem_euclid(Self::MODULO);",
       "    }",
@@ -585,11 +607,11 @@
   "modint-mul-i64": {
     "prefix": "modint-mul-i64",
     "body": [
-      "impl Mul<i64> for ModInt998244353 {",
+      "impl Mul<i64> for ModInt {",
       "    type Output = Self;",
       "    fn mul(self, rhs: i64) -> Self {",
       "        let val = (self.val * rhs).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]
@@ -597,11 +619,11 @@
   "modint-sub": {
     "prefix": "modint-sub",
     "body": [
-      "impl Sub for ModInt998244353 {",
+      "impl Sub for ModInt {",
       "    type Output = Self;",
       "    fn sub(self, rhs: Self) -> Self {",
       "        let val = (self.val - rhs.val).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]
@@ -609,7 +631,7 @@
   "modint-sub-assign": {
     "prefix": "modint-sub-assign",
     "body": [
-      "impl SubAssign for ModInt998244353 {",
+      "impl SubAssign for ModInt {",
       "    fn sub_assign(&mut self, rhs: Self) {",
       "        self.val = (self.val - rhs.val).rem_euclid(Self::MODULO);",
       "    }",
@@ -619,11 +641,11 @@
   "modint-sub-i64": {
     "prefix": "modint-sub-i64",
     "body": [
-      "impl Sub<i64> for ModInt998244353 {",
+      "impl Sub<i64> for ModInt {",
       "    type Output = Self;",
       "    fn sub(self, rhs: i64) -> Self {",
       "        let val = (self.val - rhs).rem_euclid(Self::MODULO);",
-      "        ModInt998244353 { val }",
+      "        ModInt { val }",
       "    }",
       "}"
     ]

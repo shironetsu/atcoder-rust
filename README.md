@@ -165,6 +165,7 @@ u  9
 ```
 
 - 必ず `l <= u`。
+- 配列長 `n` に対して、`l` と `u` は最小0、最大`n`。`=n`のケースだけインデックスが範囲を超えるので注意。
 - `l=u` となるのは、配列に `x` が存在しないとき。
 - インデックスが `[l, u)` の範囲が `x` の存在する領域 →`u-l=(xの個数)`。
     - `equal_range` で `Range` を直接取得できる。
@@ -193,3 +194,21 @@ for &(a, b) in edges.iter(){
 - `pub fn into_labeling(self) -> Vec<K>`: 代表元の配列に変換
 
 [UnionFind in petgraph::unionfind \- Rust](https://docs.rs/petgraph/latest/petgraph/unionfind/struct.UnionFind.html)
+
+## iter
+### filter
+
+イテレーターは多くの場合要素の参照を処理して、`filter` は（さらにその）参照を引数に取るため、例にあるように参照外しが2回要る。
+
+```rust
+let a = [0, 1, 2];
+
+let mut iter = a.iter().filter(|x| **x > 1); // need two *s!
+
+assert_eq!(iter.next(), Some(&2));
+assert_eq!(iter.next(), None);
+```
+
+> Because the closure passed to filter() takes a reference, and many iterators iterate over references, this leads to a possibly confusing situation, where the type of the closure is a double reference:
+
+[Iterator in std::iter \- Rust](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter)
