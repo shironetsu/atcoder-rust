@@ -44,7 +44,7 @@ fn main() {
     }
 
     ans.sort();
-    for a in ans.iter(){
+    for a in ans.iter() {
         println!("{}", a);
     }
 }

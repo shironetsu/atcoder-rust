@@ -1,51 +1,51 @@
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
-use proconio::{input, fastout};
-use proconio::marker::{Bytes, Chars, Isize1, Usize1};
-use std::fmt::Write;
-use std::collections::*;
-use maplit::*;
 use itertools::*;
+use maplit::*;
+use proconio::marker::{Bytes, Chars, Isize1, Usize1};
+use proconio::{fastout, input};
+use std::collections::*;
+use std::fmt::Write;
 use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input!{
+    input! {
         N: usize,
         M: usize,
     }
 
     let mut C = BTreeMap::<(usize, usize), i64>::new();
-    let mut ad = vec![vec![];N];
-    for _ in 0..M{
-        input!{a:Usize1, b:Usize1, c:i64}
-        C.insert((a,b), c);
-        C.insert((b,a), c);
+    let mut ad = vec![vec![]; N];
+    for _ in 0..M {
+        input! {a:Usize1, b:Usize1, c:i64}
+        C.insert((a, b), c);
+        C.insert((b, a), c);
         ad[a].push(b);
         ad[b].push(a);
     }
 
     let dmin0 = {
-        let mut dmin = vec![std::i64::MAX;N];
-        let mut todo =MinHeap::new();
-        let mut visited = vec![false;N];
+        let mut dmin = vec![std::i64::MAX; N];
+        let mut todo = MinHeap::new();
+        let mut visited = vec![false; N];
         let start = 0;
         todo.push((0, start));
-        loop{
-            if let Some((d, u)) = todo.pop(){
+        loop {
+            if let Some((d, u)) = todo.pop() {
                 if visited[u] {
                     continue;
                 } else {
                     visited[u] = true;
                     dmin[u].chmin(d);
-                    for &v in ad[u].iter(){
-                        let e = C.get(&(u,v)).unwrap();
-                        if !visited[v]{
-                            todo.push((d+e , v));
+                    for &v in ad[u].iter() {
+                        let e = C.get(&(u, v)).unwrap();
+                        if !visited[v] {
+                            todo.push((d + e, v));
                         }
                     }
                 }
-            }else{
+            } else {
                 break;
             }
         }
@@ -53,39 +53,36 @@ fn main() {
     };
 
     let dmin1 = {
-        let mut dmin = vec![std::i64::MAX;N];
-        let mut todo =MinHeap::new();
-        let mut visited = vec![false;N];
-        let start = N-1;
+        let mut dmin = vec![std::i64::MAX; N];
+        let mut todo = MinHeap::new();
+        let mut visited = vec![false; N];
+        let start = N - 1;
         todo.push((0, start));
-        loop{
-            if let Some((d, u)) = todo.pop(){
+        loop {
+            if let Some((d, u)) = todo.pop() {
                 if visited[u] {
                     continue;
                 } else {
                     visited[u] = true;
                     dmin[u].chmin(d);
-                    for &v in ad[u].iter(){
-                        let e = C.get(&(u,v)).unwrap();
-                        if !visited[v]{
-                            todo.push((d+e , v));
+                    for &v in ad[u].iter() {
+                        let e = C.get(&(u, v)).unwrap();
+                        if !visited[v] {
+                            todo.push((d + e, v));
                         }
                     }
                 }
-            }else{
+            } else {
                 break;
             }
         }
         dmin
     };
 
-    for k in 0..N{
+    for k in 0..N {
         let ans = dmin0[k] + dmin1[k];
         println!("{}", ans);
     }
-
-
-    
 }
 pub trait Change<T: PartialOrd> {
     fn chmin(&mut self, rhs: Self) -> bool;

@@ -70,7 +70,11 @@ fn main() {
                 break;
             }
         }
-        dmin.into_iter().enumerate().max_by_key(|&(_, d)| d).unwrap().1
+        dmin.into_iter()
+            .enumerate()
+            .max_by_key(|&(_, d)| d)
+            .unwrap()
+            .1
     } + 1;
 
     println!("{}", ans);

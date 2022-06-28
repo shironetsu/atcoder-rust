@@ -1,6 +1,12 @@
 # [競プロ典型 90 問 \- AtCoder](https://atcoder.jp/contests/typical90)
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">来たる 3 月 30 日より、日曜を除く毎朝 7:40 に競プロ・アルゴリズムの典型的問題を Twitter に投稿する企画「<a href="https://twitter.com/hashtag/%E7%AB%B6%E3%83%97%E3%83%AD%E5%85%B8%E5%9E%8B90%E5%95%8F?src=hash&amp;ref_src=twsrc%5Etfw">#競プロ典型90問</a>」をスタートします。<br><br>解説・サンプルコードなども GitHub 上に公開される形式になる予定です。皆さんお楽しみに！<br>GitHub：<a href="https://t.co/v0FgbqbwGn">https://t.co/v0FgbqbwGn</a> <a href="https://t.co/Tp0NFa1TqQ">pic.twitter.com/Tp0NFa1TqQ</a></p>&mdash; E869120🗼 (@e869120) <a href="https://twitter.com/e869120/status/1376089196100653060?ref_src=twsrc%5Etfw">March 28, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 来たる 3 月 30 日より、日曜を除く毎朝 7:40 に競プロ・アルゴリズムの典型的問題を Twitter に投稿する企画「#競プロ典型90問」をスタートします。
+> 
+> 解説・サンプルコードなども GitHub 上に公開される形式になる予定です。皆さんお楽しみに！
+> GitHub：https://github.com/E869120/kyopro_educational_90
+>
+> at: 2021-03-28
+> from: https://twitter.com/e869120/status/1376089196100653060?s=20&t=tL_otlPTigK2rTmQVbepwQ
 
 プロジェクトサイズがでかすぎるからか IntelliSense が遅い。
 
@@ -47,11 +53,11 @@ DP。文字が増えない場合の遷移（行列の単位元成分）を忘れ
 
 ## [009 \- Three Point Angle（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_i)
 
-各点を中心にとった単位円内で、もっとも角度が180度に近い2点を取る。`f64` の `tan2` をあらかじめ計算しておいて、`lower_bound`。
+各点を中心にとった単位円内で、もっとも角度が 180 度に近い 2 点を取る。`f64` の `tan2` をあらかじめ計算しておいて、`lower_bound`。
 
-[OrderedFloat in ordered\_float \- Rust](https://docs.rs/ordered-float/latest/ordered_float/struct.OrderedFloat.html#impl-Add%3C%26%27a%20OrderedFloat%3CT%3E%3E)
+[OrderedFloat in ordered_float \- Rust](https://docs.rs/ordered-float/latest/ordered_float/struct.OrderedFloat.html#impl-Add%3C%26%27a%20OrderedFloat%3CT%3E%3E)
 
-OrderedFloatとの邂逅。ソートするだけなら
+OrderedFloat との邂逅。ソートするだけなら
 
 ```rust
 v.sort_by(|a, b| a.partial_cmp(b).unwrap());
@@ -61,7 +67,7 @@ v.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
 でも良いが、`lower_bound` 使うなら `OrderedFloat` で包んでやった方が楽。
 
-……と思ったが、AtCoderで使える `OrderedFloat` のバージョンが古くて四則演算をimplしていなくて面倒。自前でimplする？　うーん。
+……と思ったが、AtCoder で使える `OrderedFloat` のバージョンが古くて四則演算を impl していなくて面倒。自前で impl する？　うーん。
 
 `lower_bound_by_key(&x, |x| OrderdFloat(x))` か、インポートせずに `lower_bound_by(|other| other.partial_cmp(&x).unwrap())` がいいかも。
 
@@ -69,7 +75,7 @@ v.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
 ## [010 \- Score Sum Queries（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_j)
 
-やるだけ。片方のクラスに生徒がいないとき、仮想的にその番号の生徒がクラスにいて0点だと数えておけばよい。
+やるだけ。片方のクラスに生徒がいないとき、仮想的にその番号の生徒がクラスにいて 0 点だと数えておけばよい。
 
 ## [011 \- Gravy Jobs（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_k)
 
@@ -79,10 +85,45 @@ TODO
 
 Union-Find。ある頂点を赤く塗るたびに、上下左右の隣接する頂点で既に塗られているものと繋げる。
 
-`x + !0` で `usize`をパニクらせずに `-1` できる。ただしdebugモードだとオーバーフローする。
+`x + !0` で `usize`をパニクらせずに `-1` できる。ただし debug モードだとオーバーフローする。
 お行儀が良い方法は `.wrapping_add(!0)` だがタイプ数が多い。
 
 ## [013 \- Passing（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_m)
 
-始点が 1,$N$ それぞれの場合でDijkstra法。
+始点が 1,$N$ それぞれの場合で Dijkstra 法。
+
+## [016 \- Minimum Coins（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_p)
+
+$Ax+By+Cz=N$ を満たす正整数 $(x,y,z)$ で $x+y+z$ が最小のもの。
+$x$ を決めると、拡張ユークリッドで $By+Cz=N-Ax$ の基本解が決まる。
+$B\leq C$ とすると $y$ はできるだけ小さな整数がよく、その場合の $y$ が正なら解として適格。
+
+## [017 \- Crossing Segments（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_q)
+
+TODO
+
+## [018 \- Statue of Chokudai（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_r)
+
+やるだけ。
+
+## [019 \- Pick Two（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_s)
+
+$N\leq 200$ なので $O(N^3)$ が間に合うなぁと思う。多分3重ループDP。
+
+操作のパターンは $(2N-1)!!$ 通りなので全部を比較していては間に合わない。
+「直接比較しなくても大小関係が判定できる操作の組合せ」がある。
+部分列での最小値を求める部分問題に落とし込む。
+
+部分列 $A_i, A_{i+1}, \cdots, A_{i+l-1}$ （$l$ は偶数）の先頭 $A_i$ が対消滅する相手は、
+$A_{i+1}, A_{i+3}, \cdots A_{i+l-1}$ のいずれかで、
+仮に$A_{i+n}$ と結びつくとすると、$A_{i+1}, \cdots, A_{i+n-1}$ はこの結びつきによって「隔離」される。
+後続の $A_{i+n+1}, \cdots, A_{i+l-1}$ も同様にその外側に相手はいない。
+$dp[i][i+l]$ をこの（右半開）区間の最小値、$dp[i][i]=0$ を $i=0~2N$ で初期化すると、最小値が次々に決まっていく。
+$dp[0][2N]$ が答え。
+
+## [020 \- Log Inequality（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_t)
+
+$a < c^b$ と同値。$13^{17} < 16^{17} = 2^{68}$ なので64ビットで大丈夫、たぶん。（まあ本番なら128ビット使えばOK）
+
+## [021 \- Come Back in One Piece（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_u)
 
