@@ -10,5 +10,22 @@ use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input! {}
+    input! {
+        N: usize,
+        K: i64,
+        A: [i64;N],
+        B: [i64;N],
+    }
+
+    let diffsum = A
+        .iter()
+        .zip(B.iter())
+        .map(|(a, b)| (a - b).abs())
+        .sum::<i64>();
+
+    if diffsum > K || (K - diffsum) % 2 == 1 {
+        println!("No");
+    } else {
+        println!("Yes");
+    }
 }

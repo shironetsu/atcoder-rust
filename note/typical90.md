@@ -127,3 +127,55 @@ $a < c^b$ と同値。$13^{17} < 16^{17} = 2^{68}$ なので64ビットで大丈
 
 ## [021 \- Come Back in One Piece（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_u)
 
+強連結成分分解を学んだ。
+
+はじめの考えはこうだった：有向グラフから吸い込み口と湧き出し口を順次除いていくと、
+残ったグラフの各連結成分内の2点は互いに行き来可能になる。
+
+そんなものは全然成り立たない。
+
+ついでに再帰によらない深さ優先探索を知った。
+葉に達するまで先入れ後出しで溜めて、葉に達したら戻りながら消費していく。
+Pythonでは再帰が遅くなるという都合からよく使うらしい。
+
+- [R's Note: \[競プロ\]再帰の回避方法まとめ](https://r-n-note.blogspot.com/2020/07/blog-post.html)
+- [Python で非再帰 DFS を楽に実装したい話 \- なすびの精進日記](https://nasubi-blog.hatenablog.com/entry/2021/09/17/160418)
+
+## [022 \- Cubic Cake（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_v)
+
+$$
+\frac{A+B+C}{{\rm gcd}(A,B,C)}-3.
+$$
+
+## [023 \- Avoid War（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_w)
+
+TODO
+
+## [024 \- Select \+／\- One（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_x)
+
+$\sum_{i=1}^N |A_i-B_i|$ が $K$ より大きければ不可能、$K$ 以下なら $K$との差が偶数なら可、奇数なら不可。
+
+`zip`を迷いなく使えるようになりたい。
+考えれば当たり前だが、タプルの参照ではなくて、参照のタプルのイテレータになる。
+
+```rust
+let a1 = [1, 2, 3];
+let a2 = [4, 5, 6];
+
+let mut iter = a1.iter().zip(a2.iter());
+
+assert_eq!(iter.next(), Some((&1, &4)));
+assert_eq!(iter.next(), Some((&2, &5)));
+assert_eq!(iter.next(), Some((&3, &6)));
+assert_eq!(iter.next(), None);
+```
+
+[Iterator in std::iter \- Rust](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.zip)
+
+## [025 \- Digit Product Equation（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_y)
+
+TODO 
+
+## [026 \- Independent Set on a Tree（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_z)
+
+二部グラフの大きい方から $N/2$ 頂点をとる。

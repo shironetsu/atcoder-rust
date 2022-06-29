@@ -15,78 +15,89 @@ fn main() {
         N: usize,
         M: usize,
     }
-    let mut inn = vec![btreeset![]; N];
-    let mut out = vec![btreeset![]; N];
+    let mut dir = vec![vec![]; N];
+    let mut rev = vec![vec![]; N];
     for _ in 0..M {
         input! {
             a: Usize1,
             b: Usize1,
         }
-        out[a].insert(b);
-        inn[b].insert(a);
+
+        dir[a].push(b);
+        rev[b].push(a);
     }
 
-    let mut c = vec![false; N];
-    let mut q = VecDeque::new();
-    for i in 0..N {
-        if out[i].len() == 0 || inn[i].len() == 0 {
-            q.push_back(i);
+    let mut que = VecDeque::new();
+    let mut seen = vec![false; N];
+    let mut todo = VecDeque::new();
+    for r in 0..N {
+        if seen[r] {
+            continue;
+        }
+        que.push_back((r, true)); //vertex, end
+        loop {
+            if let Some((v, end)) = que.pop_back() {
+                if seen[v] && end {
+                    continue;
+                }
+                seen[v] = true;
+                if end {
+                    que.push_back((v, false));
+                    let mut children = 0;
+                    for &w in dir[v].iter() {
+                        if !seen[w] {
+                            children += 1;
+                            que.push_back((w, true));
+                        }
+                    }
+                    if children == 0 {
+                        que.pop_back();
+                        todo.push_front(v);
+                        //println!("{}", v);
+                    }
+                } else {
+                    todo.push_front(v);
+                    //println!("{}", v);
+                }
+            } else {
+                break;
+            }
         }
     }
+
+    let mut ans = 0;
+    let mut seen = vec![false; N];
     loop {
-        if let Some(i) = q.pop_front() {
-            if c[i] {
+        if let Some(r) = todo.pop_front() {
+            if seen[r] {
                 continue;
             }
-            c[i] = true;
-            for &j in out[i].iter() {
-                inn[j].remove(&i);
-                if inn[j].len() == 0 {
-                    q.push_back(j);
+            let mut stack = VecDeque::new();
+            stack.push_front(r);
+            let mut size = 0;
+            loop {
+                if let Some(v) = stack.pop_front() {
+                    if seen[v] {
+                        continue;
+                    }
+                    //println!("{} {}",r,v);
+                    size += 1;
+                    seen[v] = true;
+                    for &w in rev[v].iter() {
+                        if !seen[w] {
+                            stack.push_front(w);
+                        }
+                    }
+                } else {
+                    break;
                 }
             }
-            for &j in inn[i].iter() {
-                out[j].remove(&i);
-                if out[j].len() == 0 {
-                    q.push_back(j);
-                }
-            }
+            //println!("{}", size);
+            let size = size as i64;
+            ans += size * (size - 1) / 2;
         } else {
             break;
         }
-    }
-
-    let mut uf = UnionFind::new(N);
-    for a in 0..N {
-        if c[a] {
-            continue;
-        }
-
-        for &b in out[a].iter() {
-            if c[b] {
-                continue;
-            }
-            uf.union(a, b);
-        }
-
-        for &b in inn[a].iter() {
-            if c[b] {
-                continue;
-            }
-            uf.union(a, b);
-        }
-    }
-
-    let reps = uf.into_labeling();
-    let mut conjs = BTreeMap::<usize, usize>::new();
-    for &r in reps.iter() {
-        *conjs.entry(r).or_default() += 1;
-    }
-
-    let mut ans = 0i64;
-    for (_, &size) in conjs.iter() {
-        let size = size as i64;
-        ans += size * (size - 1) / 2;
     }
 
     println!("{}", ans);
