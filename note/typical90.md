@@ -1,7 +1,7 @@
 # [競プロ典型 90 問 \- AtCoder](https://atcoder.jp/contests/typical90)
 
-> 来たる 3 月 30 日より、日曜を除く毎朝 7:40 に競プロ・アルゴリズムの典型的問題を Twitter に投稿する企画「#競プロ典型90問」をスタートします。
-> 
+> 来たる 3 月 30 日より、日曜を除く毎朝 7:40 に競プロ・アルゴリズムの典型的問題を Twitter に投稿する企画「#競プロ典型 90 問」をスタートします。
+>
 > 解説・サンプルコードなども GitHub 上に公開される形式になる予定です。皆さんお楽しみに！
 > GitHub：https://github.com/E869120/kyopro_educational_90
 >
@@ -108,7 +108,7 @@ TODO
 
 ## [019 \- Pick Two（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_s)
 
-$N\leq 200$ なので $O(N^3)$ が間に合うなぁと思う。多分3重ループDP。
+$N\leq 200$ なので $O(N^3)$ が間に合うなぁと思う。多分 3 重ループ DP。
 
 操作のパターンは $(2N-1)!!$ 通りなので全部を比較していては間に合わない。
 「直接比較しなくても大小関係が判定できる操作の組合せ」がある。
@@ -123,20 +123,20 @@ $dp[0][2N]$ が答え。
 
 ## [020 \- Log Inequality（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_t)
 
-$a < c^b$ と同値。$13^{17} < 16^{17} = 2^{68}$ なので64ビットで大丈夫、たぶん。（まあ本番なら128ビット使えばOK）
+$a < c^b$ と同値。$13^{17} < 16^{17} = 2^{68}$ なので 64 ビットで大丈夫、たぶん。（まあ本番なら 128 ビット使えば OK）
 
 ## [021 \- Come Back in One Piece（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_u)
 
 強連結成分分解を学んだ。
 
 はじめの考えはこうだった：有向グラフから吸い込み口と湧き出し口を順次除いていくと、
-残ったグラフの各連結成分内の2点は互いに行き来可能になる。
+残ったグラフの各連結成分内の 2 点は互いに行き来可能になる。
 
 そんなものは全然成り立たない。
 
 ついでに再帰によらない深さ優先探索を知った。
 葉に達するまで先入れ後出しで溜めて、葉に達したら戻りながら消費していく。
-Pythonでは再帰が遅くなるという都合からよく使うらしい。
+Python では再帰が遅くなるという都合からよく使うらしい。
 
 - [R's Note: \[競プロ\]再帰の回避方法まとめ](https://r-n-note.blogspot.com/2020/07/blog-post.html)
 - [Python で非再帰 DFS を楽に実装したい話 \- なすびの精進日記](https://nasubi-blog.hatenablog.com/entry/2021/09/17/160418)
@@ -174,8 +174,29 @@ assert_eq!(iter.next(), None);
 
 ## [025 \- Digit Product Equation（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_y)
 
-TODO 
+$m-f(m)=B$ を満たすような $m$ が $0$ の桁を含んでいれば $m=B$ 。$B$ が 0 を含んでいればこのような $m$ はちょうど一つ存在して、含んでいなければ存在しない。
+
+$m$ が $0$ の桁を含まない場合、各桁に現れる数は $2$ から $9$ までのいずれかで、制約から高々 11 桁だから、$2, 3, 5, 7$ を素因数に含めば指数は高々 $33, 22, 11, 11$。$n=f(m)$ として、$2^a\cdot 3^b \cdot 5^c\cdot 7^d$ で全探索を行う。$n= f(B+n)$ でかつ $B+n \leq N$ なら、$m=B+n$ ただ一つがこの $n$ に対応して条件を満たす。
+
+オーバーフロー対策が微妙。Rust なら `i128` 使えば心配ない。最悪 `num_bigint`　がある。
 
 ## [026 \- Independent Set on a Tree（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_z)
 
 二部グラフの大きい方から $N/2$ 頂点をとる。
+
+## [027 \- Sign Up Requests （★2）](https://atcoder.jp/contests/typical90/tasks/typical90_aa)
+
+やるだけ。
+
+## [028 \- Cluttered Paper（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ab)
+
+TODO
+
+## [029 \- Long Bricks（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ac)
+
+LazySegmentTree!
+
+サイズ $W$ を 0 で初期化して、Range Max Query として各クエリを処理。
+$[L_i, R_i)$ を $h=（その時点での総積）+1$ の ${\rm max}(h, x)$ による作用で更新。
+
+## 

@@ -10,5 +10,17 @@ use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input! {}
+    input! {
+        N: usize,
+    }
+
+    let mut names = btreeset![];
+    for i in 1..=N{
+        input!{
+            S: String,
+        }
+        if names.insert(S){
+            println!("{}", i);
+        }
+    }
 }
