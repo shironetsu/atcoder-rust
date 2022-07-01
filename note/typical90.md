@@ -198,5 +198,8 @@ LazySegmentTree!
 
 サイズ $W$ を 0 で初期化して、Range Max Query として各クエリを処理。
 $[L_i, R_i)$ を $h=（その時点での総積）+1$ の ${\rm max}(h, x)$ による作用で更新。
+## [036 \- Max Manhattan Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_aj)
+
+$u=x-y, v=x+y$ の座標変換。${\rm max}(u_i-u_{\rm min}, u_{\rm max}-u_i, v_i-v_{\rm min}, v_{\rm max}-v_i)$ が各クエリの答え。
 
 ## 
