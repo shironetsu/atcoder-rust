@@ -10,5 +10,14 @@ use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input! {}
+    input! {
+        A: i128,
+        B: i128,
+    }
+    let (_, ans) = num_integer::gcd_lcm(A, B);
+    if ans > 1_000_000_000_000_000_000 {
+        println!("Large");
+    } else {
+        println!("{}", ans);
+    }
 }

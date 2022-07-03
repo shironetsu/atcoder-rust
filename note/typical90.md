@@ -202,4 +202,31 @@ $[L_i, R_i)$ を $h=（その時点での総積）+1$ の ${\rm max}(h, x)$ に�
 
 $u=x-y, v=x+y$ の座標変換。${\rm max}(u_i-u_{\rm min}, u_{\rm max}-u_i, v_i-v_{\rm min}, v_{\rm max}-v_i)$ が各クエリの答え。
 
+## [037 \- Don't Leave the Spice（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ak)
+
+TODO
+
+## [038 \- Large LCM（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_al)
+
+`i128`。
+
+## [039 \- Tree Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_am)
+
+辺を基準に考える。その頂点が最短経路上の橋として何回使われるかは、（左にある頂点数）×（右にある頂点数）で決まる。
+片側にある頂点数は、両頂点のDFSの$((出た順)-(入った順))/2+1$ のうち小さいほう。
+
+再帰なしのDFSを良い感じにスニペット化したい。
+
+## [040 \- Get More Money（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_an)
+
+TODO
+
+## [041 \- Piles in AtCoder Farm（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_ao)
+
+TODO
+
+## [042 \- Multiple of 9（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ap)
+
+$K$ が9の倍数でなければ0、9の倍数なら $dp[i] = 各桁の和がiの数$としてDP。$dp[K]$ が答え。
+
 ## 
