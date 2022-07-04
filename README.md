@@ -212,3 +212,7 @@ assert_eq!(iter.next(), None);
 > Because the closure passed to filter() takes a reference, and many iterators iterate over references, this leads to a possibly confusing situation, where the type of the closure is a double reference:
 
 [Iterator in std::iter \- Rust](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter)
+
+## 桁あふれ
+
+`vec!` とか `btreemap!` とかでサボって痛い目を見がち。`let mut ans = 0i64`とかで初期化するのが良いか？
