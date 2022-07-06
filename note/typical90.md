@@ -229,4 +229,39 @@ TODO
 
 $K$ が9の倍数でなければ0、9の倍数なら $dp[i] = 各桁の和がiの数$としてDP。$dp[K]$ が答え。
 
-## 
+## [050 \- Stair Jump（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_ax)
+
+$k$ 回一歩で $L$ 段で上る方法を選ぶとすると、残りの $N-Lk$ 段は $1$ 段ずつ上ることになる。その並び替え。
+
+$$
+\sum_{k=0}^{\lfloor\frac{N}{L}\rfloor} \binom{k + (N-Lk)}{k}
+$$
+
+`ModInt` に `binom` を足した。
+
+## [051 \- Typical Shop（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ay)
+
+半分全探索。最大で $2^{40}$ 通りなので64ビット整数で数えること。
+
+なかなか4WAくらいが抜けない……と思ったら `upper_bound` の対象をソートしていなかった。
+逆に残りはなぜ通ったんだろう。
+
+## [052 \- Dice Product（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_az)
+
+$$
+\prod_{i=1}^N \sum_{j=1}^6 A_{ij}.
+$$
+
+
+## [053 \- Discrete Dowsing（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_ba)
+
+TODO
+
+## [054 \- Takahashi Number（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_bb)
+
+雑にBFSを使うとTLEとメモリで落ちる。
+高橋数が小さい方から決めていくと、一度その算出に利用した共著論文は再び見る必要は無くなるから、それをメモしながら探索する。
+
+解法2の「超頂点を追加する」方法が鮮やか。
+
+[解説 \- 競プロ典型 90 問](https://atcoder.jp/contests/typical90/editorial/1883)
