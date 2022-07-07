@@ -265,3 +265,19 @@ TODO
 解法2の「超頂点を追加する」方法が鮮やか。
 
 [解説 \- 競プロ典型 90 問](https://atcoder.jp/contests/typical90/editorial/1883)
+
+## [055 \- Select 5（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bc)
+
+5重ループ。$A_aA_bA_cA_dA_e$ はオーバーフローするので積を取るごとに余りを取る。
+
+itertoolsの `combinations` を使って
+
+```rust
+    let ans = (0..N).combinations(5).filter(|c|
+        c.into_iter().map(|&i|A[i]).fold(1, |p, x| (p * x).rem_euclid(P)) == Q
+    ).count();
+```
+
+みたいに書いたらTLEで落ちた。
+
+[itertools/combinations\.rs at master · rust\-itertools/itertools](https://github.com/rust-itertools/itertools/blob/master/src/combinations.rs)
