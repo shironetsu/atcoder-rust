@@ -281,3 +281,44 @@ itertoolsの `combinations` を使って
 みたいに書いたらTLEで落ちた。
 
 [itertools/combinations\.rs at master · rust\-itertools/itertools](https://github.com/rust-itertools/itertools/blob/master/src/combinations.rs)
+
+## [056 \- Lucky Bag（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bd)
+
+DPの復元……！知らない概念だった。
+
+$N<100$ なので「選択している状態」を長さ $N$ のビット列で持って遷移させることは可能。
+ただし最大600MBでメモリ制約が危なかった。
+
+## [057 \- Flip Flap（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_be)
+
+$\mathbb{F}_2$ で考える。$M \times N$ 行列 $B$ を
+
+$$
+B_{ij} = (パネルiがスイッチjによって裏返るなら1, そうでなければ0)
+$$
+
+とすると、
+
+$$
+\sum_{i=1}^M x_iB_{ij} = S_j
+$$
+
+となる $(x_1, \cdots x_M)$ が 所望のスイッチの押し方に相当する。
+この連立一次方程式系の拡大係数行列 $(B|S)$ を基本変形で標準形に持っていくと、
+解の有無を判定できる。 もし解が存在する場合、$2^{N-{\rm rank}(B)}$ が解の総数。
+
+「行の交換」「列の交換」を関数化して、各行をbitsetで持つと $\mathbb{F}_2$ なら割と簡単に書ける。
+
+## [058 \- Original Calculator（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_bf)
+鳩の巣原理でこの変換（$f(x)$とする）は周期 $10^5$ 以下でループする。
+最初の $N$ の「出現点」を $0$、一般に$f^i(N)$ の出現点を $i$ として、
+$N, f(N), f^2(N), \cdots$ とその逆（どの数が何番目に現れるか）を辞書でメモして、
+2回現れるものがあればそこで停止する。
+この過程で $K$ に達していればその時の値を返し、そうでない場合、
+ループに入る前の長さ（$\rho$ の尾の部分）を $r$, 周期を $p$ として、数列の
+
+$$
+r + ((K-r) {\rm mod} p)
+$$
+
+番目の値が答え。
