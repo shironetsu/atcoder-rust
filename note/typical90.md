@@ -322,3 +322,18 @@ r + ((K-r) {\rm mod} p)
 $$
 
 番目の値が答え。
+
+## [059 \- Many Graph Queries（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_bg)
+
+## [060 \- Chimera（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bh)
+
+## [061 \- Deck（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bi)
+
+2つのvec `a`と`b`を用意する。
+$t_i=1$ なら $x_i$ を `a` へpushし、$t_i=2$ なら `b` へpushする。
+カードは 
+```
+←山札の上               山札の下→
+aの末尾...aの先頭 bの先頭...bの末尾
+```
+というふうに並んでいるので、上から $x$ 番目にもインデックスでアクセスできる。
