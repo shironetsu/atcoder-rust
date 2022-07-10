@@ -198,6 +198,7 @@ LazySegmentTree!
 
 サイズ $W$ を 0 で初期化して、Range Max Query として各クエリを処理。
 $[L_i, R_i)$ を $h=（その時点での総積）+1$ の ${\rm max}(h, x)$ による作用で更新。
+
 ## [036 \- Max Manhattan Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_aj)
 
 $u=x-y, v=x+y$ の座標変換。${\rm max}(u_i-u_{\rm min}, u_{\rm max}-u_i, v_i-v_{\rm min}, v_{\rm max}-v_i)$ が各クエリの答え。
@@ -213,9 +214,9 @@ TODO
 ## [039 \- Tree Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_am)
 
 辺を基準に考える。その頂点が最短経路上の橋として何回使われるかは、（左にある頂点数）×（右にある頂点数）で決まる。
-片側にある頂点数は、両頂点のDFSの$((出た順)-(入った順))/2+1$ のうち小さいほう。
+片側にある頂点数は、両頂点の DFS の$((出た順)-(入った順))/2+1$ のうち小さいほう。
 
-再帰なしのDFSを良い感じにスニペット化したい。
+再帰なしの DFS を良い感じにスニペット化したい。
 
 ## [040 \- Get More Money（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_an)
 
@@ -227,7 +228,31 @@ TODO
 
 ## [042 \- Multiple of 9（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ap)
 
-$K$ が9の倍数でなければ0、9の倍数なら $dp[i] = 各桁の和がiの数$としてDP。$dp[K]$ が答え。
+$K$ が 9 の倍数でなければ 0、9 の倍数なら $dp[i] = 各桁の和がiの数$として DP。$dp[K]$ が答え。
+
+## [043 \- Maze Challenge with Lack of Sleep（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_aq)
+
+各マスに「その頂点に侵入した方向ごとの方向転換の最小値」（4 つ）を持つ。初期値 $2\times 10^6$ で良い。
+
+「探索者」にベクトルを持たせるほうが感覚に合う気がするがうまく書けない。
+
+## [044 \- Shift and Swapping（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_ar)
+
+右シフトを 「第$0$項を指すカーソルの左移動」と考える。$c$ 回の移動後に、カーソルは元の数列の $A_{-c}$ を指す。添え字は ${\rm mod} N$。「数列の第 $x$ 項と第 $y$項」を入れ替える操作は、 数列の第 $x-c$ 項と第 $y-c$項への操作に変わる。
+
+## [045 \- Simple Grouping（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_as)
+
+## [046 \- I Love 46（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_at)
+
+${\rm mod }46$ で集約すると $46^3$ のループで数えられる。 
+
+## [047 \- Monochromatic Diagonal（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_au)
+
+## [048 \- I will not drop out（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_av)
+部分点・残りの点のうち大きいほうから $K$ 個の和。部分点の獲得は「残りの点」より先に行う必要があるが、制約から降順ソートを行えば勝手にその順になる。
+
+## [049 \- Flip Digits 2（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_aw)
+
 
 ## [050 \- Stair Jump（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_ax)
 
@@ -345,3 +370,104 @@ $t_i=1$ なら $x_i$ を `a` へpushし、$t_i=2$ なら `b` へpushする。
 aの末尾...aの先頭 bの先頭...bの末尾
 ```
 というふうに並んでいるので、上から $x$ 番目にもインデックスでアクセスできる。
+
+## [062 \- Paint All（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_bj)
+
+TODO
+
+## [063 \- Monochromatic Subgrid（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_bk)
+
+TODO
+
+## [064 \- Uplift（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_bl)
+
+遅延セグ木を使ってしまう（解けるが）。
+
+階差を持っておいてそれを更新していく。高々2点しか変わらない。
+地殻変動の左右端が区画の両端に一致する場合の取り扱いに注意。
+
+## [065 \- RGB Balls 2（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_bm)
+
+TODO
+
+## [066 \- Various Arrays（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bn)
+
+前から順に1から100までの数の個数の期待値を持って、1から $N$ まで更新する。
+各回で転倒数の増分の期待値を計算できる。
+
+## [067 \- Base 8 to 9（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bo)
+
+基数変換。
+
+基数を指定して文字列→整数型変換はstdにあるが逆の整数→文字列はない。
+
+[i64 \- Rust](https://doc.rust-lang.org/std/primitive.i64.html#method.from_str_radix)
+
+`BigInt`を介することになるが、num_bigint` の `to_str_radix` で36進数まで変換できる。36は0-9, a-z, A-Z。
+
+[BigInt in num\_bigint \- Rust](https://docs.rs/num-bigint/latest/num_bigint/struct.BigInt.html#method.to_str_radix)
+
+## [068 \- Paired Information（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bp)
+
+$x=y$のとき $A_y=A_x$。
+
+$x<y$のとき、
+
+$$
+\beging{align*}
+A_y &= V_{y-1}-A_{y-1}\\
+    &= V_{y-1}-V_{y-2}+A_{y-2}\\
+    &= (-1)^{x-y}A_{x} + (-1)^{y+1}\sum_{i=x}^{y-1} (-1)^{i}V_{i}.
+\end{align*}
+$$
+
+$y<x$のとき上の式の$x,y$を入れ替えて、
+
+$$
+\beging{align*}
+A_x &= (-1)^{y-x}A_{y} + (-1)^{x+1}\sum_{i=y}^{x-1} (-1)^{i}V_{i}.
+A_y &= (-1)^{x-y}A_{x} + (-1)^{y}\sum_{i=y}^{x-1} (-1)^{i}V_{i}.
+\end{align*}
+$$
+
+が成り立つ。
+
+$V_{i}$ がこの範囲で確定していることはandを2項演算に持つブーリアンのセグ木かunion-findで調べられる。
+もし確定していれば、$(-1)^i V_{i}$ をセグ木で持てば和が計算できる。
+
+こう、上のような式をちゃんと場合分けして計算しておかないと、符号で無駄に躓く。
+
+## [069 \- Colorful Blocks 2（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_bq)
+
+$$
+\begin{align*}
+{\rm ans} = \left\{
+    \begin{array}{cc}
+        K & N=1 \\
+        K(K-1)(K-2)^{N-2} N \geq 2 \\
+    \end{array}
+\right.
+\end{align*}
+$$
+
+高速べき乗。一瞬DPに見える。
+
+## [070 \- Plant Planning（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_br)
+
+中央値がマンハッタン距離を最小化するという偽りの記憶があった。サンプルは通ってしまうが全然嘘。
+
+$N=1$のとき工場と発電所を同じ場所にすればマンハッタン距離の和は0になる。
+
+そうでないとき、$x$ をソート済みとして $x_{m-1} \leq u \leq x_m$となる $m$ （その外側では明らかにマンハッタン距離は最小化しない）をとると、
+
+$$
+\begin{align*}
+\sum_{i=0}^{N-1}|u-x_{i}| 
+    &= \sum_{i=0}^{m-1} u - x_i + \sum_{i=m}^{N-1} x_i-u\\
+    &= (2m-N) u + \sum_{i=0}^{N-1} x_i - 2\sum_{i=0}^{m-1} x_{i}.
+\end{align*}
+$$
+
+$2m-N < 0$ のとき $u=x_{m}$、$2m-N\geq 0$ の とき $u=x_{m-1}$ がこれを最小化する。
+
+$x$ と $y$ 独立なのでそれぞれ最小値を計算する。
