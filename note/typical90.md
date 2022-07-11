@@ -373,7 +373,12 @@ aの末尾...aの先頭 bの先頭...bの末尾
 
 ## [062 \- Paint All（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_bj)
 
-TODO
+最後に塗るボール $i$ は $A_i=i$ か $B_i=i$ の少なくとも一方が成り立つ必要がある。
+
+$A_i\rightarrow i$ と $B_i\rightarrow i$ を有向辺に持つ有向グラフを考える。
+最後に塗るボールは自己ループを持つということ。
+自己ループを持つ頂点からの距離が有限で遠いほうから順に塗ると全ての辺を塗ることができる（∵ $i$ を塗る段階では $A_i$ か $B_i$ の少なくとも一方は白い）。
+もし到達できない頂点があればその頂点は塗れない。
 
 ## [063 \- Monochromatic Subgrid（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_bk)
 
