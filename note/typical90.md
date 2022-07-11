@@ -327,6 +327,14 @@ $$
 
 ## [060 \- Chimera（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bh)
 
+最長部分増加列（LIS）を学ぶ。
+
+$dp[i] = (長さが i+1 の部分列の末尾の要素)$ を順に更新する。
+その過程で各 $i$ に対して、$A_0, \cdots , A_i$ の最長部分増加列の長さを得る。
+$A$ を逆転すると、同様に$A_i, \cdots, A_{N-1}$ の最長部分減少列の長さが分かる。
+その和-1が条件を満たす部分列で、最大値が $A_i$ になるようなもの。
+全ての $i$ に対してその長さを調べると、最大値が答え。全体で $O(N\log N) $。
+
 ## [061 \- Deck（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bi)
 
 2つのvec `a`と`b`を用意する。
