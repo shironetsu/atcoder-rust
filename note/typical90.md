@@ -476,3 +476,68 @@ $$
 $2m-N < 0$ のとき $u=x_{m}$、$2m-N\geq 0$ の とき $u=x_{m-1}$ がこれを最小化する。
 
 $x$ と $y$ 独立なのでそれぞれ最小値を計算する。
+
+## [075 \- Magic For Balls（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_bw)
+$x$ の素因数が葉になるような二分木の高さ。$\lceil\log_{2}(xの素因数の数)\rceil$
+
+## [076 \- Cake Cut（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_bx)
+尺取法。周期境界条件を考慮するために元の数列 $A$ を2個繋げた数列で考える。
+
+## [077 \- Planes on a 2D Plane（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_by)
+TODO
+
+## [078 \- Easy Graph Problem（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_bz)
+${\rm min}(a_i, b_i)$ から ${\rm max}(a_i, b_i)$ へ有効辺が生えていると考える。
+入次数が1の頂点数が答え。
+
+## [079 \- Two by Two（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_ca)
+明らかに同じ領域への操作は増加か減少の一方だけで良い。
+正方形領域 $A_{x,y},A_{x+1,y},A_{x,y+1},A_{x+1,y+1},$ への操作を
+$C_{x,y} (1\leq x < H-1, 1\leq y < W-1)$ とする。
+
+$$
+\begin{align}
+A_{0,0}+C_{0,0} &= B_{0,0},\\
+A_{0,1}+C_{0,0}+C_{0,1} &= B_{0,1},\\
+\vdots
+\end{align}
+$$
+
+から $C$ は次々に決めることができて、$A_{x,y} (x=H-1 または y=W-1)$ の右端と下端で解が存在するか判定する。
+
+## [080 \- Let's Share Bit（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_cb)
+$$
+\begin{align}
+S_i = \left\{ x \middle| 0\leq x < 2^D, x \& A_i \neq 0 \right\}
+\end{align}
+$$ 
+
+とする。求めるものは、
+
+$$
+ans = \bigcap_{i=1}^{N} S_i.
+$$
+
+包除原理から、
+
+$$
+\begin{align*}
+\bigcap_{i=1}^{N} S_i 
+=&\overline{\bigcup_{i=1}^{N} \overline{S_i}}\\
+=&2^D - \bigcup_{i=1}^{N} \overline{S_i}\\
+=&2^D - \left|\overline{S_1}\right| - \cdots \left|\overline{S_N}\right| \\
+&+\left|\overline{S_1}\cap \overline{S_2}\right| + \cdots
++\left|\overline{S_{N-1}}\cap \overline{S_N}\right|\\
+&-\left|\overline{S_1}\cap \overline{S_2}\cap \overline{S_3}\right| - \cdots
+\end{align*}
+$$
+
+各項は
+
+$$
+\left|\overline{S_1}\cap \overline{S_2}\cap \overline{S_3}\right|
+=\left\{ x \middle| 0\leq x < 2^D, x \& (A_1 |A_2|A_3 ) = 0 \right\}
+$$
+
+から、$A_1|A_2|A_3$ の 1 の数を $e$ とすると、
+$2^{D-e}$ から計算できる。ビット全探索。0を除外することに注意。
