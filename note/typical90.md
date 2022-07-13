@@ -190,7 +190,11 @@ $m$ が $0$ の桁を含まない場合、各桁に現れる数は $2$ から $9
 
 ## [028 \- Cluttered Paper（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ab)
 
-TODO
+いもす法、感動……。
+
+[いもす法 \- いもす研 \(imos laboratory\)](https://imoz.jp/algorithms/imos_method.html)
+
+2次元セグ木だと思った。
 
 ## [029 \- Long Bricks（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ac)
 
@@ -541,3 +545,73 @@ $$
 
 から、$A_1|A_2|A_3$ の 1 の数を $e$ とすると、
 $2^{D-e}$ から計算できる。ビット全探索。0を除外することに注意。
+
+## [081 \- Friendly Group（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_cc)
+
+## [082 \- Counting Numbers（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_cd)
+
+桁数が同じもの（非負整数 $n$ に対して $[10^n, 10^{n+1})$）で部分和を取ってから全体の和を取る。
+含まれる数の個数は $[L,R]$ とのオーバーラップ。
+$10^19$ が現れるとオーバーフローするので、$10^{18}$ だけ特別に扱う。
+
+## [083 \- Colorful Graph（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_ce)
+
+## [084 \- There are two types of characters（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_cf)
+
+全ての $(l,r)$　のペアの個数（$N(N+1)/2$ 個）から、`o` しか含まれない区間と `x` しか含まれない区間の個数を引く。
+`o` しか含まれない区間は、`o` が連続する区間の部分区間。ちょうど $m$ 個連続する区間に対して部分区間は $m(m+1)/$ 個ある。
+これを全ての連続区間（ちょうど1個だけの場合も含む）で取る。`x`についても同様。
+
+ランレングス圧縮（Run Length Encoding; RLE）。
+[連長圧縮 \- Wikipedia](https://ja.wikipedia.org/wiki/%E9%80%A3%E9%95%B7%E5%9C%A7%E7%B8%AE)
+
+## [085 \- Multiplication 085（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_cg)
+
+大小関係を考えない場合、$a,b,c$ に $K$ の素因数をどのように割り振れるか考える。
+素因数 $p$ を指数 $e$ で含むとすると、そのわり振り方は${}_eH_3$（重複組み合わせ）通り。
+全ての素因数に渡ってこの積を取る。これを $p$ とする。
+
+$$
+P = \left\{(a,b,c)\middle|abc=K\right\}
+$$
+
+次に$a=b$の場合を考える。この場合、上の記号で素因数 $p$ に対して $\lceil e/2 \rceil + 1$ 通り。
+全体では同様に素因数に関する積。これを $q$ とする。
+
+$$
+Q = \left\{(a,b,c)\middle|abc=K, a=b\right\}
+$$
+
+$a=b=c$ の場合は、$K$ が立方数なら1, そうでなければ0。これを $r$ とする。
+
+$$
+\begin{align}
+U_{1} &= \left\{(a,b,c)\middle|abc=K,\,a<b<c\right\},\\
+U_{2} &= \left\{(a,b,c)\middle|abc=K,\,b<c<a\right\},\\
+U_{3} &= \left\{(a,b,c)\middle|abc=K,\,c<a<b\right\},\\
+U_{4} &= \left\{(a,b,c)\middle|abc=K,\,a<c<b\right\},\\
+U_{5} &= \left\{(a,b,c)\middle|abc=K,\,c<b<a\right\},\\
+U_{6} &= \left\{(a,b,c)\middle|abc=K,\,b<a<c\right\},\\
+V_{1} &= \left\{(a,b,c)\middle|abc=K,\,a<b=c\right\},\\
+V_{2} &= \left\{(a,b,c)\middle|abc=K,\,b=c<a\right\},\\
+V_{3} &= \left\{(a,b,c)\middle|abc=K,\,a=b<c\right\},\\
+V_{4} &= \left\{(a,b,c)\middle|abc=K,\,c<a=b\right\},\\
+V_{5} &= \left\{(a,b,c)\middle|abc=K,\,a=c<b\right\},\\
+V_{6} &= \left\{(a,b,c)\middle|abc=K,\,b<a=c\right\},\\
+W &= \left\{(a,b,c)\middle|abc=K,\,a=b=c\right\},\\
+\end{align}
+$$
+
+$$
+\begin{align}
+U_{1}+\cdots+U_{6} + V_{1}+\cdots+V_{6} + W &= p,\\
+V_{1}+V_{3} + W &= q,\\
+W &= r,\\
+\end{align}
+$$
+
+$$
+ans = U_{1} + V_{1} + V_{3} + W = \frac{p+3q+2r}{6}
+$$
+
+これ必ず自然数になるの面白いな。
