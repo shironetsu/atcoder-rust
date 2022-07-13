@@ -3,6 +3,8 @@
 - [AtCoder：競技プログラミングコンテストを開催する国内最大のサイト](https://atcoder.jp/)
 - [qryxip/cargo\-compete: A Cargo subcommand for competitive programming](https://github.com/qryxip/cargo-compete)
 - [2020 Update · rust\-lang\-ja/atcoder\-rust\-resources Wiki](https://github.com/rust-lang-ja/atcoder-rust-resources/wiki/2020-Update)
+- [アルゴリズムロジック](https://algo-logic.info/)
+- [AIZU ONLINE JUDGE: Programming Challenge](https://judge.u-aizu.ac.jp/onlinejudge/)
 
 Rust の AC 解答の URL
 
@@ -216,3 +218,7 @@ assert_eq!(iter.next(), None);
 ## 桁あふれ
 
 `vec!` とか `btreemap!` とかでサボって痛い目を見がち。`let mut ans = 0i64`とかで初期化するのが良いか？
+
+## count_ones
+
+[u32 \- Rust](https://doc.rust-lang.org/std/primitive.u32.html#method.count_ones)

@@ -1,0 +1,3 @@
+{
+  "rust-analyzer.linkedProjects": ["/cargo-compete/template-cargo-lock.toml"]
+}

@@ -203,6 +203,26 @@ LazySegmentTree!
 サイズ $W$ を 0 で初期化して、Range Max Query として各クエリを処理。
 $[L_i, R_i)$ を $h=（その時点での総積）+1$ の ${\rm max}(h, x)$ による作用で更新。
 
+## [030 \- K Factors（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_ad)
+
+変則のエラトステネスの篩。$s[2]\cdots s[N]$ を0で初期化して、0が見つかればその倍数（それ自身を含む）をインクリメントする。
+最終的な値が素因数の個数。
+
+## [031 \- VS AtCoder（★6）](https://atcoder.jp/contests/typical90/tasks/typical90_ae)
+
+TODO
+
+## [032 \- AtCoder Ekiden（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_af)
+
+走る順番に関して全探索。$10! = 3628800$ なので間に合う。
+
+## [033 \- Not Too Bright（★2）](https://atcoder.jp/contests/typical90/tasks/typical90_ag)
+
+だいたい $\lceil H/2\rceil\times \lceil W/2\rceil$ だが、${\rm min}(H,W)=1$ の場合だけ例外。
+
+## [034 \- There are few types of elements（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_ah)
+区間に含まれる数の multi set （実装的にはmap）を持ちながら尺取法。
+
 ## [036 \- Max Manhattan Distance（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_aj)
 
 $u=x-y, v=x+y$ の座標変換。${\rm max}(u_i-u_{\rm min}, u_{\rm max}-u_i, v_i-v_{\rm min}, v_{\rm max}-v_i)$ が各クエリの答え。

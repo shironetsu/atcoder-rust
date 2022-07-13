@@ -11,8 +11,16 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: i32,
     }
+
+    let n = if N >= 42 {
+        N + 1
+    } else {
+        N
+    };
+
+    println!("AGC{:03}", n);
 
     
 }
