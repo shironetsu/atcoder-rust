@@ -11,4 +11,22 @@
       "[(1, 0), (!0, 0), (0, 1), (0, !0), (1, 1), (!0, !0), (1, !0), (!0, 1)]"
     ]
   },
+  "yes": {
+    "prefix": "yes",
+    "body": [
+      "println!(\"Yes\");"
+    ]
+  },
+  "no": {
+    "prefix": "no",
+    "body": [
+      "println!(\"No\");"
+    ]
+  },
+  "print answer": {
+    "prefix": "pa",
+    "body": [
+      "println!(\"{}\", ans);"
+    ]
+  }
 }
