@@ -222,3 +222,23 @@ assert_eq!(iter.next(), None);
 ## count_ones
 
 [u32 \- Rust](https://doc.rust-lang.org/std/primitive.u32.html#method.count_ones)
+
+## 再帰でDFS 
+```rust
+fn dfs(i: usize, seen: &mut Vec<bool>, ad: &Vec<Vec<usize>>, other_data: &Data) -> Value{
+    for &j in ad[i].iter() {
+        if seen[j] {
+            continue;
+        }
+        seen[j] = true;
+        let val = dfs(v, seen, ad, other_data);
+    }
+}
+
+fn main(){
+    //入力
+    let mut seen = vec![false; N];
+    seen[0] = true; //大事
+    let ans = dfs(0, &mut seen, &ad, &c);
+}
+```
