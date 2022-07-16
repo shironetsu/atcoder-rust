@@ -197,6 +197,15 @@ for &(a, b) in edges.iter(){
 
 [UnionFind in petgraph::unionfind \- Rust](https://docs.rs/petgraph/latest/petgraph/unionfind/struct.UnionFind.html)
 
+各連結成分のサイズ
+```rust
+let reps = uf.into_labeling();
+let mut m = BTreeMap::<usize, usize>::new();
+for r in reps{
+    *m.entry(r).or_default() += 1;
+}
+```
+
 ## iter
 ### filter
 
