@@ -5,6 +5,7 @@
 - [2020 Update · rust\-lang\-ja/atcoder\-rust\-resources Wiki](https://github.com/rust-lang-ja/atcoder-rust-resources/wiki/2020-Update)
 - [アルゴリズムロジック](https://algo-logic.info/)
 - [AIZU ONLINE JUDGE: Programming Challenge](https://judge.u-aizu.ac.jp/onlinejudge/)
+- [nekolib \- Rust](https://rsk0315.github.io/library-rs/nekolib/index.html)
 
 Rust の AC 解答の URL
 
@@ -15,6 +16,10 @@ https://atcoder.jp/contests/abc256/submissions?f.Task=abc256_a&f.LanguageName=Ru
 ```
 
 # メモ
+
+## 公式doc
+- リスポーン地点。
+[Iterator in std::iter \- Rust](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
 
 ## バージョン 1.42.0 で使えないもの
 

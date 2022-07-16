@@ -443,7 +443,7 @@ $x=y$のとき $A_y=A_x$。
 $x<y$のとき、
 
 $$
-\beging{align*}
+\begin{align*}
 A_y &= V_{y-1}-A_{y-1}\\
     &= V_{y-1}-V_{y-2}+A_{y-2}\\
     &= (-1)^{x-y}A_{x} + (-1)^{y+1}\sum_{i=x}^{y-1} (-1)^{i}V_{i}.
@@ -453,7 +453,7 @@ $$
 $y<x$のとき上の式の$x,y$を入れ替えて、
 
 $$
-\beging{align*}
+\begin{align*}
 A_x &= (-1)^{y-x}A_{y} + (-1)^{x+1}\sum_{i=y}^{x-1} (-1)^{i}V_{i}.
 A_y &= (-1)^{x-y}A_{x} + (-1)^{y}\sum_{i=y}^{x-1} (-1)^{i}V_{i}.
 \end{align*}
