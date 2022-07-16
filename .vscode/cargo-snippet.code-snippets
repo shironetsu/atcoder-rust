@@ -1063,6 +1063,35 @@
       "}"
     ]
   },
+  "union-find-ext": {
+    "prefix": "union-find-ext",
+    "body": [
+      "use petgraph::stable_graph::IndexType;",
+      "use petgraph::unionfind::UnionFind;",
+      "use std::collections::BTreeMap;",
+      "pub trait UnionFindExt {",
+      "    fn into_sizes(self) -> Vec<usize>;",
+      "}",
+      "impl<K: IndexType> UnionFindExt for UnionFind<K> {",
+      "    fn into_sizes(self) -> Vec<usize> {",
+      "        let reps = self.into_labeling();",
+      "        let mut sizes = BTreeMap::<K, usize>::new();",
+      "        for r in reps {",
+      "            *sizes.entry(r).or_default() += 1;",
+      "        }",
+      "        sizes.into_iter().map(|(_, size)| size).collect::<Vec<_>>()",
+      "    }",
+      "}"
+    ]
+  },
+  "union-find-ext-def": {
+    "prefix": "union-find-ext-def",
+    "body": [
+      "pub trait UnionFindExt {",
+      "    fn into_sizes(self) -> Vec<usize>;",
+      "}"
+    ]
+  },
   "vvec": {
     "prefix": "vvec",
     "body": [

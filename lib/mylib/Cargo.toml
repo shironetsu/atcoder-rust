@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 cargo-snippet="0.6"
-
+petgraph = "=0.5.0"
