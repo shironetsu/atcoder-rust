@@ -797,6 +797,25 @@
       "}"
     ]
   },
+  "prime": {
+    "prefix": "prime",
+    "body": [
+      "pub fn get_primes(N: i64) -> Vec<i64> {",
+      "    let mut sieve = vec![true; N as usize + 1];",
+      "    let mut primes = vec![];",
+      "    for d in 2..=N {",
+      "        if !sieve[d as usize] {",
+      "            continue;",
+      "        }",
+      "        primes.push(d);",
+      "        for n in (2 * d..=N).step_by(d as usize) {",
+      "            sieve[n as usize] = false;",
+      "        }",
+      "    }",
+      "    primes",
+      "}"
+    ]
+  },
   "segtree": {
     "prefix": "segtree",
     "body": [

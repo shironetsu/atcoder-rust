@@ -26,6 +26,7 @@ pub trait Op<S> {
 #[snippet("segtree")]
 #[snippet(include = "segtree-impl")]
 #[snippet(include = "segtree-op")]
+#[snippet(prefix="use std::marker::PhantomData;")]
 pub struct SegmentTree<S: Clone, F: Op<S>> {
     n: usize,
     log: usize,

@@ -406,7 +406,10 @@ $A_i\rightarrow i$ と $B_i\rightarrow i$ を有向辺に持つ有向グラフ�
 
 ## [063 \- Monochromatic Subgrid（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_bk)
 
-TODO
+行が $H\leq 8$ と小さいのでbit全探索っぽいところまでは分かったがその後が分からず。
+
+行を選択したうえで、各列に書かれた数が同じか、同じ場合どの数なのかを見る。
+最も多くの均一な列がある数が、その行を選択した場合の最良の部分グリッドを成す。
 
 ## [064 \- Uplift（★3）](https://atcoder.jp/contests/typical90/tasks/typical90_bl)
 
@@ -500,6 +503,22 @@ $$
 $2m-N < 0$ のとき $u=x_{m}$、$2m-N\geq 0$ の とき $u=x_{m-1}$ がこれを最小化する。
 
 $x$ と $y$ 独立なのでそれぞれ最小値を計算する。
+
+## [071 \- Fuzzy Priority（★7）](https://atcoder.jp/contests/typical90/tasks/typical90_bs)
+
+TODO
+
+## [072 \- Loop Railway Plan（★4）](https://atcoder.jp/contests/typical90/tasks/typical90_bt)
+
+「選択したマスに対するハミルトン閉路の有無」の判定だと思ったがそれだときつい。
+
+`(最後に訪問した点のx座標, 同y座標, 訪問済みの点を記録したbit列)` をキューで持って探索。
+桁dpでも良い。$H\times W$ の2次元平面を1次元化するときは、$(i,j)$ を $i\times W + j$ へとマップすることに注意。
+$i \times H + j$ としてしまって数個のACで悩んだ。
+
+Bit列の立っているbitの個数が4以上なら始点と終点以外で同じ辺を通らない経路の長さになる。
+2の場合（隣接する点に行って戻るだけ）は条件を満たさないため除外することに注意。
+
 
 ## [073 \- We Need Both a and b（★5）](https://atcoder.jp/contests/typical90/tasks/typical90_bu)
 

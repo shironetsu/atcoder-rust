@@ -10,5 +10,21 @@ use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input! {}
+    input! {
+        N: usize,
+        K: usize,
+    }
+
+    let mut c = vec![];
+    for _ in 0..N {
+        input! {
+            a: i64,
+            b: i64,
+        }
+        c.push(b);
+        c.push(a - b);
+    }
+    c.sort();
+    let ans = c.iter().rev().take(K).sum::<i64>();
+    println!("{}", ans);
 }

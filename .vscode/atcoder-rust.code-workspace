@@ -22,6 +22,12 @@
 		},
 		{
 			"path": "..\\cargo-compete\\abc250"
+		},
+		{
+			"path": "..\\cargo-compete\\abc258"
+		},
+		{
+			"path": "..\\cargo-compete\\abc259"
 		}
 	],
 	"settings": {}

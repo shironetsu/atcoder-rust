@@ -256,3 +256,13 @@ fn main(){
     let ans = dfs(0, &mut seen, &ad, &c);
 }
 ```
+## 無限
+
+`std::{integer}::MAX` を無限として扱うべきではない。
+$\infty+1=\infty$ を利用することがあるため。
+
+## swap
+```rust
+std::mem::swap(&mut A[i], &mut A[j]);
+```
+借用ルールに違反するためこれはできない。
