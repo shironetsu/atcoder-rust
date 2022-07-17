@@ -1,4 +1,16 @@
-# 解答状況
+# Rust解答状況
+## [問題 \- AtCoder Beginner Contest 260](https://atcoder.jp/contests/abc260/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- A Unique Letter](https://atcoder.jp/contests/abc260/tasks/abc260_a)|✅||
+|[B \- Better Students Are Needed\!](https://atcoder.jp/contests/abc260/tasks/abc260_b)|✅|タプルのソート|
+|[C \- Changing Jewels](https://atcoder.jp/contests/abc260/tasks/abc260_c)|✅|漸化式|
+|[D \- Draw Your Cards](https://atcoder.jp/contests/abc260/tasks/abc260_d)|✅|連結リスト,setのrange|
+|[E \- At Least One](https://atcoder.jp/contests/abc260/tasks/abc260_e)|✅|一方を固定,いもす法|
+|[F \- Find 4\-cycle](https://atcoder.jp/contests/abc260/tasks/abc260_f)|||
+|[G \- Scalene Triangle Area](https://atcoder.jp/contests/abc260/tasks/abc260_g)|||
+|[Ex \- Colorfulness](https://atcoder.jp/contests/abc260/tasks/abc260_h)|||
+
 ## [問題 \- AtCoder Beginner Contest 259](https://atcoder.jp/contests/abc259/tasks)
 |問題|結果|メモ|
 |:---:|:---:|:---:|
