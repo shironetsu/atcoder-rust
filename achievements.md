@@ -111,3 +111,77 @@
 |[D \- Distinct Trio](https://atcoder.jp/contests/abc252/tasks/abc252_d)|✅|対称式|
 |[E \- Road Reduction](https://atcoder.jp/contests/abc252/tasks/abc252_e)|✅|ダイクストラ,理想の最小値が実は存在|
 |[F \- Bread](https://atcoder.jp/contests/abc252/tasks/abc252_f)|✅|マージテク|
+|[G \- Pre\-Order](https://atcoder.jp/contests/abc252/tasks/abc252_g)|||
+|[Ex \- K\-th beautiful Necklace](https://atcoder.jp/contests/abc252/tasks/abc252_h)|||
+
+## [パナソニックグループプログラミングコンテスト2022（AtCoder Beginner Contest 251） \- AtCoder](https://atcoder.jp/contests/abc251)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Six Characters](https://atcoder.jp/contests/abc251/tasks/abc251_a)|✅||
+|[B \- At Most 3 \(Judge ver\.\)](https://atcoder.jp/contests/abc251/tasks/abc251_b)|✅||
+|[C \- Poem Online Judge](https://atcoder.jp/contests/abc251/tasks/abc251_c)|✅||
+|[D \- At Most 3 \(Contestant ver\.\)](https://atcoder.jp/contests/abc251/tasks/abc251_d)|✅|$n$進法|
+|[E \- Takahashi and Animals](https://atcoder.jp/contests/abc251/tasks/abc251_e)|✅|DP,ループの処理|
+|[F \- Two Spanning Trees](https://atcoder.jp/contests/abc251/tasks/abc251_f)|||
+|[G \- Intersection of Polygons](https://atcoder.jp/contests/abc251/tasks/abc251_g)|||
+|[Ex \- Fill Triangle](https://atcoder.jp/contests/abc251/tasks/abc251_h)|||
+
+## [問題 \- AtCoder Beginner Contest 250](https://atcoder.jp/contests/abc250/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Adjacent Squares](https://atcoder.jp/contests/abc250/tasks/abc250_a)|✅||
+|[B \- Enlarged Checker Board](https://atcoder.jp/contests/abc250/tasks/abc250_b)|✅||
+|[C \- Adjacent Swaps](https://atcoder.jp/contests/abc250/tasks/abc250_c)|✅||
+|[D \- 250\-like Number](https://atcoder.jp/contests/abc250/tasks/abc250_d)|✅||
+|[E \- Prefix Equality](https://atcoder.jp/contests/abc250/tasks/abc250_e)|✅|出現点|
+|[F \- One Fourth](https://atcoder.jp/contests/abc250/tasks/abc250_f)|||
+|[G \- Stonks](https://atcoder.jp/contests/abc250/tasks/abc250_g)|||
+|[Ex \- Trespassing Takahashi](https://atcoder.jp/contests/abc250/tasks/abc250_h)|||
+
+## [問題 \- モノグサプログラミングコンテスト2022（AtCoder Beginner Contest 249）](https://atcoder.jp/contests/abc249/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Jogging](https://atcoder.jp/contests/abc249/tasks/abc249_a)|✅||
+|[B \- Perfect String](https://atcoder.jp/contests/abc249/tasks/abc249_b)|✅||
+|[C \- Just K](https://atcoder.jp/contests/abc249/tasks/abc249_c)|✅|bit全探索|
+|[D \- Index Trio](https://atcoder.jp/contests/abc249/tasks/abc249_d)|✅|約数列挙|
+|[E \- RLE](https://atcoder.jp/contests/abc249/tasks/abc249_e)|✅|DP,遷移を束ねる,初期値でも成立する漸化式|
+|[F \- Ignore Operations](https://atcoder.jp/contests/abc249/tasks/abc249_f)|||
+|[G \- Xor Cards](https://atcoder.jp/contests/abc249/tasks/abc249_g)|||
+|[Ex \- Dye Color](https://atcoder.jp/contests/abc249/tasks/abc249_h)|||
+
+## [問題 \- ユニークビジョンプログラミングコンテスト2022（AtCoder Beginner Contest 248）](https://atcoder.jp/contests/abc248/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Lacked Number](https://atcoder.jp/contests/abc248/tasks/abc248_a)|✅||
+|[B \- Slimes](https://atcoder.jp/contests/abc248/tasks/abc248_b)|✅||
+|[C \- Dice Sum](https://atcoder.jp/contests/abc248/tasks/abc248_c)|✅|DP,母函数|
+|[D \- Range Count Query](https://atcoder.jp/contests/abc248/tasks/abc248_d)|✅|upper-lower|
+|[E \- K\-colinear Line](https://atcoder.jp/contests/abc248/tasks/abc248_e)|✅|直線の同値性判定|
+|[F \- Keep Connect](https://atcoder.jp/contests/abc248/tasks/abc248_f)|||
+|[G \- GCD cost on the tree](https://atcoder.jp/contests/abc248/tasks/abc248_g)|||
+|[Ex \- Beautiful Subsequences](https://atcoder.jp/contests/abc248/tasks/abc248_h)|||
+
+## [問題 \- AtCoder Beginner Contest 247](https://atcoder.jp/contests/abc247/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Move Right](https://atcoder.jp/contests/abc247/tasks/abc247_a)|✅||
+|[B \- Unique Nicknames](https://atcoder.jp/contests/abc247/tasks/abc247_b)|✅|multiset|
+|[C \- 1 2 1 3 1 2 1](https://atcoder.jp/contests/abc247/tasks/abc247_c)|✅||
+|[D \- Cylinder](https://atcoder.jp/contests/abc247/tasks/abc247_d)|✅|deque|
+|[E \- Max Min](https://atcoder.jp/contests/abc247/tasks/abc247_e)|✅|一方を固定,lower_bound|
+|[F \- Cards](https://atcoder.jp/contests/abc247/tasks/abc247_f)|✅|リュカ数,彩色,cycle graph|
+|[G \- Dream Team](https://atcoder.jp/contests/abc247/tasks/abc247_g)|||
+|[Ex \- Rearranging Problem](https://atcoder.jp/contests/abc247/tasks/abc247_h)|||
+
+## [問題 \- AtCoder Beginner Contest 246](https://atcoder.jp/contests/abc246/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Four Points](https://atcoder.jp/contests/abc246/tasks/abc246_a)|✅|XOR|
+|[B \- Get Closer](https://atcoder.jp/contests/abc246/tasks/abc246_b)|✅||
+|[C \- Coupon](https://atcoder.jp/contests/abc246/tasks/abc246_c)|✅|貪欲|
+|[D \- 2\-variable Function](https://atcoder.jp/contests/abc246/tasks/abc246_d)|✅|一方を固定,二分探索|
+|[E \- Bishop 2](https://atcoder.jp/contests/abc246/tasks/abc246_e)|✅|01-BFS, 拡張Dijkstra|
+|[F \- typewriter](https://atcoder.jp/contests/abc246/tasks/abc246_f)|✅|包除原理|
+|[G \- Game on Tree 3](https://atcoder.jp/contests/abc246/tasks/abc246_g)|||
+|[Ex \- 01? Queries](https://atcoder.jp/contests/abc246/tasks/abc246_h)|||

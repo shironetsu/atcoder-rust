@@ -4,6 +4,7 @@
 - [qryxip/cargo\-compete: A Cargo subcommand for competitive programming](https://github.com/qryxip/cargo-compete)
 - [2020 Update · rust\-lang\-ja/atcoder\-rust\-resources Wiki](https://github.com/rust-lang-ja/atcoder-rust-resources/wiki/2020-Update)
 - [アルゴリズムロジック](https://algo-logic.info/)
+- [Main Page \- Algorithms for Competitive Programming](https://cp-algorithms.com/#navigation)
 - [AIZU ONLINE JUDGE: Programming Challenge](https://judge.u-aizu.ac.jp/onlinejudge/)
 - [nekolib \- Rust](https://rsk0315.github.io/library-rs/nekolib/index.html)
 
@@ -266,3 +267,23 @@ $\infty+1=\infty$ を利用することがあるため。
 std::mem::swap(&mut A[i], &mut A[j]);
 ```
 借用ルールに違反するためこれはできない。
+
+## チェス
+
+割とよく出る。
+
+|駒名|移動方向|メモ|
+|:---:|:---:|:---:|
+|♔キング|縦・横・斜め1マス||
+|♕クイーン|縦・横・斜め任意マス||
+|♖ルーク|縦・横任意マス||
+|♗ビショップ|斜め任意マス|$x+y$ のパリティ不変|
+|♘ナイト|$(x,y)→(x\pm 2, y\pm 1),(x\pm 1, y\pm 2)$|$x+y$ のパリティ変化|
+|♙ポーン|略||
+
+
+- [チェスのルール \- Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%81%E3%82%A7%E3%82%B9%E3%81%AE%E3%83%AB%E3%83%BC%E3%83%AB)
+- [エイト・クイーン \- Wikipedia](https://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%A4%E3%83%88%E3%83%BB%E3%82%AF%E3%82%A4%E3%83%BC%E3%83%B3)
+- [ナイト・ツアー \- Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%8A%E3%82%A4%E3%83%88%E3%83%BB%E3%83%84%E3%82%A2%E3%83%BC)
+- [E \- Bishop 2](https://atcoder.jp/contests/abc246/tasks/abc246_e)
+- [E \- Queen on Grid](https://atcoder.jp/contests/abc183/tasks/abc183_e)
