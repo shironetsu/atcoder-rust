@@ -7,7 +7,7 @@
 |[C \- Changing Jewels](https://atcoder.jp/contests/abc260/tasks/abc260_c)|✅|漸化式|
 |[D \- Draw Your Cards](https://atcoder.jp/contests/abc260/tasks/abc260_d)|✅|連結リスト,setのrange|
 |[E \- At Least One](https://atcoder.jp/contests/abc260/tasks/abc260_e)|✅|一方を固定,いもす法|
-|[F \- Find 4\-cycle](https://atcoder.jp/contests/abc260/tasks/abc260_f)|||
+|[F \- Find 4\-cycle](https://atcoder.jp/contests/abc260/tasks/abc260_f)|✅|鳩の巣原理|
 |[G \- Scalene Triangle Area](https://atcoder.jp/contests/abc260/tasks/abc260_g)|||
 |[Ex \- Colorfulness](https://atcoder.jp/contests/abc260/tasks/abc260_h)|||
 
