@@ -287,3 +287,21 @@ std::mem::swap(&mut A[i], &mut A[j]);
 - [ナイト・ツアー \- Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%8A%E3%82%A4%E3%83%88%E3%83%BB%E3%83%84%E3%82%A2%E3%83%BC)
 - [E \- Bishop 2](https://atcoder.jp/contests/abc246/tasks/abc246_e)
 - [E \- Queen on Grid](https://atcoder.jp/contests/abc183/tasks/abc183_e)
+
+## Enum
+列挙型を定義するとクエリの保存が楽になることがある。
+```rust
+pub enum Op { //operation
+    Add(usize, i64),
+    Shift,
+    Show(usize),
+}
+```
+みたいな。
+「ラベル」を単に整数で保存するより混乱を避けられるし、パターンマッチで値が取り出せるのも良い。
+
+その際、だいたいプリミティブ型しか値に持たないので、
+```rust
+#[derive(PartialOrd, PartialEq, Ord, Eq, Clone, Copy, Debug)]
+```
+は付けておくと良い。
