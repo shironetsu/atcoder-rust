@@ -1,4 +1,16 @@
 # Rust解答状況
+## [問題 \- AtCoder Beginner Contest 261](https://atcoder.jp/contests/abc261/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Intersection](https://atcoder.jp/contests/abc261/tasks/abc261_a)|✅||
+|[B \- Tournament Result](https://atcoder.jp/contests/abc261/tasks/abc261_b)|✅||
+|[C \- NewFolder\(1\)](https://atcoder.jp/contests/abc261/tasks/abc261_c)|✅|multiset|
+|[D \- Flipping and Bonus](https://atcoder.jp/contests/abc261/tasks/abc261_d)|✅|DP|
+|[E \- Many Operations](https://atcoder.jp/contests/abc261/tasks/abc261_e)|✅|ビット演算,基底|
+|[F \- Sorting Color Balls](https://atcoder.jp/contests/abc261/tasks/abc261_f)|✅|転倒数|
+|[G \- Replace](https://atcoder.jp/contests/abc261/tasks/abc261_g)|||
+|[Ex \- Game on Graph](https://atcoder.jp/contests/abc261/tasks/abc261_h)|||
+
 ## [問題 \- AtCoder Beginner Contest 260](https://atcoder.jp/contests/abc260/tasks)
 |問題|結果|メモ|
 |:---:|:---:|:---:|
