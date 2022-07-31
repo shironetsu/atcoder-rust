@@ -14,3 +14,4 @@ std::mem::swap
 - グリッドグラフ
 - chmin, chmaxのfloatへの対応。
 - x y 縦の入力
+- 二項係数イテレーター
