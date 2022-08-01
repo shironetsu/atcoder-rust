@@ -11,10 +11,22 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        N: i64,
+        n: i64,
     }
 
-    for b in 1..
+    let mut ans = 0i64;
+    for a in 1..=num_integer::cbrt(n){
+        for b in a..{
+            let cmax = n / (a*b);
+            if cmax < b {
+                break;
+            }
+            let m = cmax - b + 1;
+            ans += m;
+        }
+    }
+
+    println!("{}", ans);
 
     
 }
