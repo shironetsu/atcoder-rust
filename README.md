@@ -181,6 +181,35 @@ u  9
 - `(-∞, a[0]]` に対して `l=0`。`(-∞, a[0])` に対して `u=0`。
 - `a` の長さを `n` とする。`(a[n-1], ∞)` に対して`l=n`。`[a[n-1], ∞)` に対して `u=n`
 
+### 補足：`BTreeMap` や `BTreeSet` の場合
+`range` によって double-ended iterator を生成できる。`next` で取り出す。インデックスではなく参照を取り出す。
+- [BTreeSet in std::collections \- Rust](https://doc.rust-lang.org/std/collections/struct.BTreeSet.html#method.range)
+- [BTreeMap in std::collections \- Rust](https://doc.rust-lang.org/std/collections/struct.BTreeMap.html#method.range)
+
+```rust
+use std::collections::BTreeSet;
+use std::ops::Bound::{ Included, Excluded, Unbounded };
+
+fn main() {
+    let mut set = BTreeSet::<i32>::new();
+    set.insert(2);
+    set.insert(3);
+    set.insert(5);
+    set.insert(8);
+    //lower_bound
+    //if let Some(&n) = set.range(5..).next() { ↓の糖衣構文
+    if let Some(&n) = set.range((Included(5), Unbounded)).next() {
+        assert_eq!(n, 5);
+    }
+    //upper_bound
+    if let Some(&n) = set.range((Excluded(5), Unbounded)).next() {
+        assert_eq!(n, 8);
+    }
+}
+```
+
+これも `Ext` みたいなトレイトを作ればいいかもしれない。
+
 ## Union-find
 
 ```rust

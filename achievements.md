@@ -199,6 +199,16 @@
 |[Ex \- 01? Queries](https://atcoder.jp/contests/abc246/tasks/abc246_h)|||
 
 ## [問題 \- AtCoder Beginner Contest 245](https://atcoder.jp/contests/abc245/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Good morning](https://atcoder.jp/contests/abc245/tasks/abc245_a)|✅||
+|[B \- Mex](https://atcoder.jp/contests/abc245/tasks/abc245_b)|✅|mex|
+|[C \- Choose Elements](https://atcoder.jp/contests/abc245/tasks/abc245_c)|✅|DP|
+|[D \- Polynomial division](https://atcoder.jp/contests/abc245/tasks/abc245_d)|✅|多項式の除算|
+|[E \- Wrapping Chocolate](https://atcoder.jp/contests/abc245/tasks/abc245_e)|✅|multiset, range|
+|[F \- Endless Walk](https://atcoder.jp/contests/abc245/tasks/abc245_f)|||
+|[G \- Foreign Friends](https://atcoder.jp/contests/abc245/tasks/abc245_g)|||
+|[Ex \- Product Modulo 2](https://atcoder.jp/contests/abc245/tasks/abc245_h)|||
 
 ## [問題 \- AtCoder Beginner Contest 244](https://atcoder.jp/contests/abc244/tasks)
 |問題|結果|メモ|
