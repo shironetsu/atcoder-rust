@@ -17,6 +17,12 @@
       "[(1, 1), (!0, !0), (1, !0), (!0, 1)]"
     ]
   },
+  "knight": {
+    "prefix": "knight",
+    "body": [
+      "[(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)]"
+    ]
+  },
   "yes": {
     "prefix": "yes",
     "body": [
@@ -33,6 +39,18 @@
     "prefix": "pa",
     "body": [
       "println!(\"{}\", ans);"
+    ]
+  },
+  "union find": {
+    "prefix": "union-find",
+    "body": [
+      "use petgraph::unionfind::UnionFind;"
+    ]
+  },
+  "println": {
+    "prefix": "pl",
+    "body": [
+      "println!(\"{}\", $1);"
     ]
   }
 }

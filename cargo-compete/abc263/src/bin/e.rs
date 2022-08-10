@@ -22,9 +22,9 @@ fn main() {
         let a = A[i];
         let p = lst2.get(i).clone();
         lst2.apply_range(i+1, i+a as usize + 1, &Adder{x: p * ModInt::from(a).inv()});
-        let b = lst.get(i).clone();
+        let b = lst.get(i).clone() * p.inv();
         let e = ModInt::from(1+a) * (ModInt::from(a).inv().pow(2))
-                    + b * (ModInt::from(a).inv());
+                    + b * ModInt::from(a).inv();
         //let e = e * p.inv();
         lst.apply_range(i+1, i+a as usize + 1, &Adder{x:e} );
     }

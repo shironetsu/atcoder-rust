@@ -1,4 +1,16 @@
 # Rust解答状況
+## [問題 \- 第三回日本最強プログラマー学生選手権\-予選\-（AtCoder Beginner Contest 262）](https://atcoder.jp/contests/abc262/tasks)
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- World Cup](https://atcoder.jp/contests/abc262/tasks/abc262_a)|✅||
+|[B \- Triangle \(Easier\)](https://atcoder.jp/contests/abc262/tasks/abc262_b)|✅||
+|[C \- Min Max Pair](https://atcoder.jp/contests/abc262/tasks/abc262_c)|✅||
+|[D \- I Hate Non\-integer Number](https://atcoder.jp/contests/abc262/tasks/abc262_d)|✅|DP(3重)|
+|[E \- Red and Blue Graph](https://atcoder.jp/contests/abc262/tasks/abc262_e)|✅|次数,偶奇性|
+|[F \- Erase and Rotate](https://atcoder.jp/contests/abc262/tasks/abc262_f)|||
+|[G \- LIS with Stack](https://atcoder.jp/contests/abc262/tasks/abc262_g)|||
+|[Ex \- Max Limited Sequence](https://atcoder.jp/contests/abc262/tasks/abc262_h)|||
+
 ## [問題 \- AtCoder Beginner Contest 261](https://atcoder.jp/contests/abc261/tasks)
 |問題|結果|メモ|
 |:---:|:---:|:---:|
@@ -205,10 +217,11 @@
 |[B \- Mex](https://atcoder.jp/contests/abc245/tasks/abc245_b)|✅|mex|
 |[C \- Choose Elements](https://atcoder.jp/contests/abc245/tasks/abc245_c)|✅|DP|
 |[D \- Polynomial division](https://atcoder.jp/contests/abc245/tasks/abc245_d)|✅|多項式の除算|
-|[E \- Wrapping Chocolate](https://atcoder.jp/contests/abc245/tasks/abc245_e)|✅|multiset, range|
+|[E \- Wrapping Chocolate](https://atcoder.jp/contests/abc245/tasks/abc245_e)|✅|対象性を崩す,multiset, range|
 |[F \- Endless Walk](https://atcoder.jp/contests/abc245/tasks/abc245_f)|||
 |[G \- Foreign Friends](https://atcoder.jp/contests/abc245/tasks/abc245_g)|||
 |[Ex \- Product Modulo 2](https://atcoder.jp/contests/abc245/tasks/abc245_h)|||
+
 
 ## [問題 \- AtCoder Beginner Contest 244](https://atcoder.jp/contests/abc244/tasks)
 |問題|結果|メモ|
@@ -223,6 +236,12 @@
 |[Ex \- Linear Maximization](https://atcoder.jp/contests/abc244/tasks/abc244_h)|||
 
 ## [問題 \- AtCoder Beginner Contest 243](https://atcoder.jp/contests/abc243/tasks)
+
+|問題|結果|メモ|
+|:---:|:---:|:---:|
+|[A \- Shampoo](https://atcoder.jp/contests/abc243/tasks/abc243_a)|✅||
+|[B \- Hit and Blow](https://atcoder.jp/contests/abc243/tasks/abc243_b)|✅||
+|[C \- Collision 2](https://atcoder.jp/contests/abc243/tasks/abc243_c)|✅||
 
 ## [問題 \- AtCoder Beginner Contest 242](https://atcoder.jp/contests/abc242/tasks)
 |問題|結果|メモ|

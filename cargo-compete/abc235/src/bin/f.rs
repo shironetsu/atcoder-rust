@@ -9,8 +9,11 @@ use maplit::*;
 #[fastout]
 fn main() {
     input!{
-        
+        N: Chars,
+        M: usize,
+        digits: [char;M],
     }
 
+    
     
 }

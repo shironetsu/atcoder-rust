@@ -11,16 +11,8 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        N: usize,
-        M: usize,
-        uv: [(Usize1, Usize1);M],
+        
     }
 
-    let mut ad = vec![vec![];N];
-    for &(u, v) in uv.iter(){
-        ad[u].push(v);
-    }
-
-    
     
 }

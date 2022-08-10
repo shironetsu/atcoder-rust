@@ -11,16 +11,14 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        N: usize,
-        M: usize,
-        uv: [(Usize1, Usize1);M],
+        K: u32,
+        A: String,
+        B: String,
     }
 
-    let mut ad = vec![vec![];N];
-    for &(u, v) in uv.iter(){
-        ad[u].push(v);
-    }
-
-    
+    let A = i64::from_str_radix(&A, K).unwrap();
+    let B = i64::from_str_radix(&B, K).unwrap();
+    let ans = A * B;
+    println!("{}", ans);
     
 }

@@ -334,3 +334,11 @@ pub enum Op { //operation
 #[derive(PartialOrd, PartialEq, Ord, Eq, Clone, Copy, Debug)]
 ```
 は付けておくと良い。
+
+## Option
+イテレータを実装しているので。
+```
+vec.extend(option)
+```
+[Rustに関するチラ裏](https://zenn.dev/manukeno/scraps/f617c9dd9c7811)
+

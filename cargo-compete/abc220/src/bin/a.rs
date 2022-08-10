@@ -11,16 +11,16 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        N: usize,
-        M: usize,
-        uv: [(Usize1, Usize1);M],
+        A: i32,
+        B: i32,
+        C: i32,
     }
 
-    let mut ad = vec![vec![];N];
-    for &(u, v) in uv.iter(){
-        ad[u].push(v);
+    if let Some(x) = (A..=B).find(|&x|x%C==0) {
+        println!("{}", x);
+    } else {
+        println!("{}", -1);
     }
 
-    
     
 }
