@@ -11,12 +11,6 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        N: usize,
-        A: [i64;N],
-    }
-
-    let s = BTreeSet::new();
-    for &a in A.iter(){
         
     }
 
