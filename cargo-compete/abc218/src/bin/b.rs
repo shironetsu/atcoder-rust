@@ -11,8 +11,11 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        P: [Usize1;26],
     }
+
+    let ans = P.into_iter().map(|i| ('a' as u8 + i as u8) as char).collect::<String>();
+    println!("{}", ans);
 
     
 }
