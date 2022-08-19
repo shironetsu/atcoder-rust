@@ -26,18 +26,46 @@ fn main() {
     }
 
     let mut e = vec![BTreeSet::new();N];
+    let mut indeg = vec![0;N];
     for i in 0..M{
         for j in 0..a[i].len() - 1{
-            e[a[i][j+1]].insert(a[i][j]);
+            let from = a[i][j]; // below
+            let to = a[i][j+1];
+            if e[from].insert(to){
+                indeg[to] += 1;
+            }
         }
     }
 
     let mut ord = vec![];
-    let mut s = BTreeSet::new();
+
+    let mut q = VecDeque::new();
     for i in 0..N{
-        if e[i].len() == 0 {
-            s.insert(i);
+        if indeg[i] == 0 {
+            q.push_back(i);
         }
     }
     
+    loop {
+        if let Some(i) = q.pop_front(){
+            for &j in e[i].iter(){
+                indeg[j] -= 1;
+                if indeg[j] == 0 {
+                    q.push_back(j);
+                }
+            }
+            ord.push(i);
+        } else {
+            break;
+        }
+    }
+
+    let ord = ord.iter().map(|&i|i+1).collect_vec();
+    //println!("{:?}", ord);
+
+    if ord.len() == N {
+        println!("Yes");
+    } else {
+        println!("No");
+    }
 }
