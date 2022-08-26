@@ -10,5 +10,12 @@ use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input! {}
+    input! {
+        N: usize,
+        M: usize,
+        K: usize,
+        uv: [(Usize1, Usize1);M],
+    }
+
+    
 }
