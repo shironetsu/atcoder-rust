@@ -1,20 +1,84 @@
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
-use proconio::{input, fastout};
-use proconio::marker::{Bytes, Chars, Isize1, Usize1};
-use std::fmt::{Write, Display};
-use std::collections::*;
-use maplit::*;
 use itertools::*;
+use maplit::*;
+use proconio::marker::{Bytes, Chars, Isize1, Usize1};
+use proconio::{fastout, input};
+use std::collections::*;
+use std::fmt::{Display, Write};
 use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input!{
-        
+    input! {
+        H: usize,
+        W: usize,
+        C: i64,
+        mut A: [[i64;W];H],
     }
 
+    let inf = 3 * 10i64.pow(18);
+    let mut ans = inf;
+
     
+    for i in 0..2 {
+        let mut b = vec![vec![0; W]; H];
+        for i in 0..H {
+            for j in 0..W {
+                b[i][j] = A[i][j] - C * (i as i64 + j as i64);
+            }
+        }
+
+        let mut min = vec![vec![inf; W]; H];
+
+        for i in 0..H {
+            for j in 0..W {
+                if i > 0 {
+                    let x = b[i - 1][j].min(min[i - 1][j]);
+                    min[i][j].chmin(x);
+                }
+                if j > 0 {
+                    let x = b[i][j - 1].min(min[i][j - 1]);
+                    min[i][j].chmin(x);
+                }
+            }
+        }
+
+        for i in 0..H {
+            for j in 0..W {
+                let cost = A[i][j] + C * (i as i64 + j as i64) + min[i][j];
+                ans.chmin(cost);
+            }
+        }
+
+        for i in 0..H {
+            A[i].reverse();
+        }
+    }
+
+    println!("{}", ans);
+}
+pub trait Change<T: PartialOrd> {
+    fn chmin(&mut self, rhs: Self) -> bool;
+    fn chmax(&mut self, rhs: Self) -> bool;
+}
+impl<T: PartialOrd> Change<T> for T {
+    fn chmax(&mut self, rhs: Self) -> bool {
+        if *self < rhs {
+            *self = rhs;
+            true
+        } else {
+            false
+        }
+    }
+    fn chmin(&mut self, rhs: Self) -> bool {
+        if *self > rhs {
+            *self = rhs;
+            true
+        } else {
+            false
+        }
+    }
 }
 //______________________________________________________________________________
 //
@@ -59,4 +123,3 @@ macro_rules! input_edges {
         let $ad = $ad;
     };
 }
-
