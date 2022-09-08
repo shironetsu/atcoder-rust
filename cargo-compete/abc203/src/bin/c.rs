@@ -11,8 +11,31 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        K: i64,
+        mut AB: [(i64, i64);N]
     }
+
+    AB.sort();
+
+    let mut m = K;
+    let mut x = 0;
+    let mut c = 0;
+
+    loop {
+        x += m;
+        m = 0;
+        while c < N && AB[c].0 <= x {
+            m += AB[c].1;
+            c += 1;
+        }
+
+        if m == 0 {
+            break;
+        }
+    }
+
+    println!("{}", x);
 
     
 }
