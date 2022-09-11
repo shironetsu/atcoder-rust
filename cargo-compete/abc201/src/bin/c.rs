@@ -21,11 +21,13 @@ fn main() {
             .map(|c| (c as u8 - '0' as u8) as usize)
             .collect_vec();
         let mut c = [false; 10];
-        for j in 0..4 {
-            c[p[j]] = true;
+        for &pp in p.iter() {
+            c[pp] = true;
         }
-        let ok = (0..10)
-            .map(|i| match (S[i], c[i]) {
+        let ok = S
+            .iter()
+            .zip(c.iter())
+            .map(|x| match x {
                 ('o', true) => true,
                 ('o', false) => false,
                 ('x', true) => false,
