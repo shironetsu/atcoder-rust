@@ -16,50 +16,24 @@ fn main() {
     }
 
     let m = 200i64;
-    let mut dp = vec![vec![false; m as usize]; N + 1];
-    dp[0][0] = true;
+    let mut dp = vec![vec![0; m as usize]; N + 1];
+    dp[0][0] = 1;
     for i in 0..N {
         dp[i + 1] = dp[i].clone();
         for j in 0..m as usize {
             let k = ((j as i64 + A[i]) % m) as usize;
-            if k == 0 && dp[i][j] && i < N - 1 {
-                let mut b = vec![false; i + 2];
-                b[i+1] = true;
-                let mut c = vec![false; i + 2];
-                let mut jj = j;
-                c[i+1] = true;
-                c[i] = true;
-                for ii in (0..i).rev() {
-                    let jj1 = (jj as i64 - A[ii] as i64).rem_euclid(m) as usize;
-                    if dp[ii][jj1] {
-                        jj = jj1;
-                        c[ii] = true;
-                    } else {
-                        c[ii] = false;
-                    }
-                }
-                let b = (0..=i).filter(|i| b[*i]).map(|i| i + 1).collect_vec();
-                let c = (0..=i).filter(|i| c[*i]).map(|i| i + 1).collect_vec();
-                if b.len().min(c.len()) > 0 {
-                    println!("Yes");
-                    let bns = b.iter().map(|i|i.to_string()).join(" ");
-                    println!("{} {}", b.len(), bns);
-                    let cns = c.iter().map(|i|i.to_string()).join(" ");
-                    println!("{} {}", c.len(), cns);
-                    return;
-                }
-            }
+            dp[i + 1][k] += dp[i][j];
+        }
 
-            if dp[i + 1][k] && dp[i][j] {
+        for j in 0..m as usize {
+            if (j == 0 && dp[i + 1][j] >= 3) || (j > 0 && dp[i + 1][j] >= 2) {
                 let mut b = vec![false; i + 1];
                 let mut c = vec![false; i + 1];
-
-                let mut kk = k;
-                b[i] = false;
-                for ii in (0..i).rev() {
-                    let kk1 = (kk as i64 - A[ii] as i64).rem_euclid(m) as usize;
-                    if dp[ii][kk1] {
-                        kk = kk1;
+                let mut jj = j;
+                for ii in (0..=i).rev() {
+                    let jj1 = (jj as i64 - A[ii]).rem_euclid(m) as usize;
+                    if dp[ii][jj1] > 0 {
+                        jj = jj1;
                         b[ii] = true;
                     } else {
                         b[ii] = false;
@@ -67,29 +41,34 @@ fn main() {
                 }
 
                 let mut jj = j;
-                c[i] = true;
-                for ii in (0..i).rev() {
-                    let jj1 = (jj as i64 - A[ii] as i64).rem_euclid(m) as usize;
-                    if dp[ii][jj1] {
-                        jj = jj1;
-                        c[ii] = true;
+                let mut f = false;
+                for ii in (0..=i).rev() {
+                    let jj1 = (jj as i64 - A[ii]).rem_euclid(m) as usize;
+                    if !f {
+                        if dp[ii][jj1] >= 2 || dp[ii][jj] == 0 {
+                            jj = jj1;
+                            c[ii] = true;
+                            f = true;
+                        } else {
+                            c[ii] = false;
+                        }
                     } else {
-                        c[ii] = false;
+                        if dp[ii][jj] > 0 {
+                            c[ii] = false;
+                        } else {
+                            c[ii] = true;
+                            jj = jj1;
+                        }
                     }
                 }
-                let b = (0..=i).filter(|i| b[*i]).map(|i| i + 1).collect_vec();
-                let c = (0..=i).filter(|i| c[*i]).map(|i| i + 1).collect_vec();
-                if b.len().min(c.len()) > 0 {
-                    println!("Yes");
-                    let bns = b.iter().map(|i|i.to_string()).join(" ");
-                    println!("{} {}", b.len(), bns);
-                    let cns = c.iter().map(|i|i.to_string()).join(" ");
-                    println!("{} {}", c.len(), cns);
-                    return;
-                }
 
+                let b = (0..=i).filter(|ii| b[*ii]).map(|i| i + 1).collect_vec();
+                let c = (0..=i).filter(|ii| c[*ii]).map(|i| i + 1).collect_vec();
+                println!("Yes");
+                println!("{} {}", b.len(), b.iter().map(|i| i.to_string()).join(" "));
+                println!("{} {}", c.len(), c.iter().map(|i| i.to_string()).join(" "));
+                return;
             }
-            dp[i + 1][k] |= dp[i][j];
         }
     }
     println!("No");
