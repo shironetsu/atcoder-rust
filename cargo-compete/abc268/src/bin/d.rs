@@ -1,16 +1,16 @@
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
-use proconio::{input, fastout};
-use proconio::marker::{Bytes, Chars, Isize1, Usize1};
-use std::fmt::{Write, Display};
-use std::collections::*;
-use maplit::*;
 use itertools::*;
+use maplit::*;
+use proconio::marker::{Bytes, Chars, Isize1, Usize1};
+use proconio::{fastout, input};
+use std::collections::*;
+use std::fmt::{Display, Write};
 use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input!{
+    input! {
         N: usize,
         M: usize,
         mut S: [String;N],
@@ -18,27 +18,31 @@ fn main() {
     }
 
     if N == 1 {
-        if T.iter().find(|x|**x==S[0]).is_some() {
+        if T.iter().find(|x| **x == S[0]).is_some() {
             println!("{}", -1);
         } else {
-            println!("{}", S[0]);
+            if S[0].len() < 3 {
+                println!("{}", -1);
+            } else {
+                println!("{}", S[0]);
+            }
         }
         return;
     }
 
     S.sort();
     let mut inv = BTreeMap::<String, usize>::new();
-    for (i, s) in S.iter().enumerate(){
+    for (i, s) in S.iter().enumerate() {
         inv.insert(s.clone(), i);
     }
 
-    let r_max = 16 - S.iter().map(|x|x.len()).sum::<usize>() - (N - 1);
-    
+    let r_max = 16 - S.iter().map(|x| x.len()).sum::<usize>() - (N - 1);
+
     let mut p = vec![];
     let mut todo = VecDeque::new();
-    todo.push_back((0, vec![0;N-1]));
+    todo.push_back((0, vec![0; N - 1]));
     loop {
-        if let Some((r, v)) = todo.pop_front(){
+        if let Some((r, v)) = todo.pop_front() {
             if r == N - 1 {
                 p.push(v);
                 continue;
@@ -54,20 +58,16 @@ fn main() {
         }
     }
 
-    //println!("{:?}", p);
-
-    //let mut v = vec![];
-
     let mut m = BTreeMap::<Vec<usize>, BTreeSet<Vec<usize>>>::new();
 
-    for i in 0..M{
+    for i in 0..M {
         {
             let t = T[i].chars().collect_vec();
-            if t[0] == '_' || t[t.len()-1] == '_' {
+            if t[0] == '_' || t[t.len() - 1] == '_' {
                 continue;
             }
         }
-        let t = T[i].split("_").filter(|&s|s!="").collect::<Vec<_>>();
+        let t = T[i].split("_").filter(|&s| s != "").collect::<Vec<_>>();
         {
             let mut t = t.clone();
             t.sort();
@@ -75,10 +75,7 @@ fn main() {
                 continue;
             }
         }
-        let mut p = vec![0;N];
-        for i in 0..N{
-            p[i] = *inv.get(t[i]).unwrap();
-        }
+        let p = (0..N).map(|i| *inv.get(t[i]).unwrap()).collect_vec();
 
         let t = T[i].chars().collect_vec();
         let mut l = 0;
@@ -92,77 +89,48 @@ fn main() {
                 while r < t.len() && t[r] == '_' {
                     r += 1;
                 }
-                a.push(r-l-1);
-                l += 1;
+                a.push(r - l - 1);
+                l = r;
             }
 
             if l >= t.len() || r >= t.len() {
                 break;
             }
         }
-        //println!("{:?}", a);
-        //v.push((p, a));
-        if let Some(r) = m.get_mut(&p){
+        if let Some(r) = m.get_mut(&p) {
             r.insert(a);
         } else {
-            let mut bt = BTreeSet::new();
-            bt.insert(a);
-            m.insert(p, bt);
+            m.insert(p, btreeset![a]);
         }
-
-        // if m.contains_key(&p) {
-        //     let r = m.get_mut(&p).unwrap();
-        //     *r.insert(a);
-        // } else {
-
-        // }
     }
-
-    //println!("{:?}", m);
 
     let mut q = (0..N).collect_vec();
 
-    let ts = T.clone().into_iter().collect::<BTreeSet<_>>();
-
     loop {
-        if let Some(v) = m.get(&q){
-            for pp in p.iter(){
-                if !v.contains(pp){
-                    //println!("{:?}", pp);
-                    let mut ans = vec![];
-                    for i in 0..N{
-                        for c in S[q[i]].chars(){
-                            ans.push(c);
-                        }
-                        if i < N - 1 {
-                            for i in 0..pp[i]+1{
-                                ans.push('_');
-                            }
-                        }
-                    }
-
-                    let ans = ans.iter().collect::<String>();
-                    if !ts.contains(&ans) && ans.len() <= 16 {
-                        //continue;
-                        println!("{}", ans);
-                        return;
-                    }
+        if let Some(v) = m.get(&q) {
+            for pp in p.iter() {
+                if !v.contains(pp) {
+                    let ans = q
+                        .iter()
+                        .map(|&i| S[i].clone())
+                        .interleave(pp.iter().map(|x| '_'.to_string().repeat(x + 1)))
+                        .join("");
+                    println!("{}", ans);
+                    return;
                 }
-            }    
+            }
         } else {
-            let ans = (0..N).map(|i|S[q[i]].clone()).join("_");
+            let ans = (0..N).map(|i| S[q[i]].clone()).join("_");
             println!("{}", ans);
             return;
         }
 
-
-        if !q.next_permutation(){
+        if !q.next_permutation() {
             break;
         }
     }
 
     println!("{}", -1);
-
 }
 //______________________________________________________________________________
 //
@@ -207,4 +175,3 @@ macro_rules! input_edges {
         let $ad = $ad;
     };
 }
-
