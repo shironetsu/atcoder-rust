@@ -1,34 +1,43 @@
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
-use proconio::{input, fastout};
-use proconio::marker::{Bytes, Chars, Isize1, Usize1};
-use std::fmt::{Write, Display};
-use std::collections::*;
-use maplit::*;
 use itertools::*;
+use maplit::*;
+use proconio::marker::{Bytes, Chars, Isize1, Usize1};
+use proconio::{fastout, input};
+use std::collections::*;
+use std::fmt::{Display, Write};
 use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input!{
-        
+    input! {
+        N: i64,
     }
 
-    
+    let v = (0..63usize).filter(|&i| (N >> i) & 1 == 1).collect_vec();
+    let ans = (0..1i64 << v.len())
+        .map(|n| {
+            v.clone()
+                .iter()
+                .enumerate()
+                .map(|(i, m)| ((n >> i) & 1) << m)
+                .sum::<i64>()
+        })
+        .collect_vec();
+    ans.ansl();
 }
 //______________________________________________________________________________
 //
 pub trait Answer {
-    fn fmt(&self)->String;
-    fn fmtl(&self)->String;
+    fn fmt(&self) -> String;
+    fn fmtl(&self) -> String;
     fn ans(&self);
     fn ansl(&self);
 }
 
 impl<T: Display> Answer for Vec<T> {
-    fn fmt(&self)->String {
-        self
-            .iter()
+    fn fmt(&self) -> String {
+        self.iter()
             .map(|x| format!("{}", x))
             .collect::<Vec<_>>()
             .join(" ")
@@ -38,9 +47,8 @@ impl<T: Display> Answer for Vec<T> {
         println!("{}", self.fmt());
     }
 
-    fn fmtl(&self)->String {
-        self
-            .iter()
+    fn fmtl(&self) -> String {
+        self.iter()
             .map(|x| format!("{}", x))
             .collect::<Vec<_>>()
             .join("\n")
@@ -67,4 +75,3 @@ macro_rules! input_edges {
         let $ad = $ad;
     };
 }
-
