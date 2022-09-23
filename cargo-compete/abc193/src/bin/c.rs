@@ -11,10 +11,28 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        N: i64,
+        N: i128,
     }
 
-    
+    let mut s = BTreeSet::new();
+
+    for b in 2..{
+        let mut e = false;
+        for a in 2i128..{
+            let n = a.pow(b);
+            if n <= N {
+                s.insert(n);
+                e = true;
+            } else {
+                break;
+            }
+        }
+        if !e {
+            break;
+        }
+    }
+
+    println!("{}", N - s.len() as i128);
 
     
 }
