@@ -11,9 +11,32 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: i64,
     }
 
+    let M = 2 * N;
+    let mut dd = vec![];
+    for d in 1..{
+        if d * d >= M {
+            if d * d == M {
+                dd.push(d);
+            }
+            break;
+        }
+        if M % d == 0 {
+            dd.push(d);
+            dd.push(M/d);
+        }
+    }
+
+    let mut ans = 0;
+    for &m in dd.iter(){
+        let p = M / m;
+        if (p-m+1) % 2 == 0 {
+            ans += 1;
+        }
+    }
+    println!("{}", ans);
     
 }
 //______________________________________________________________________________
