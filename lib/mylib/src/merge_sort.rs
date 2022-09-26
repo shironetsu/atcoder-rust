@@ -1,45 +1,33 @@
 use std::cmp::Ord;
 
-// https://stackoverflow.com/questions/53204327/how-to-have-a-private-part-of-a-trait
-mod private {
-    pub trait MergeSortInternal {
-        fn merge_sort_internal(&mut self, a: usize, b: usize) -> i64;
-    }
-}
-
 pub trait MergeSort {
     fn merge_sort(&mut self) -> i64;
 }
 
-use private::MergeSortInternal;
-impl<T: Ord + Clone> MergeSort for Vec<T> {
+impl<T: Ord + Clone> MergeSort for [T] {
     fn merge_sort(&mut self) -> i64 {
-        let n = self.len();
-        self.merge_sort_internal(0, n)
-    }
-}
-
-impl<T: Ord + Clone> MergeSortInternal for Vec<T> {
-    fn merge_sort_internal(&mut self, a: usize, b: usize) -> i64 {
         let mut inv = 0;
-        if b - a > 1 {
-            let m = (a + b) / 2;
-            inv += self.merge_sort_internal(a, m);
-            inv += self.merge_sort_internal(m, b);
-            let mut w = vec![];
+        let n = self.len();
+        if n > 1 {
+            let m = n / 2;
+            inv += self[0..m].merge_sort();
+            inv += self[m..n].merge_sort();
+            let mut w = Vec::with_capacity(n);
             let mut c = m;
-            for i in a..m {
-                while c < b && self[c] < self[i] {
+            for i in 0..m {
+                while c < n && self[c] < self[i] {
                     inv += (m - i) as i64;
                     w.push(self[c].clone());
                     c += 1;
                 }
                 w.push(self[i].clone());
             }
-            for i in c..b {
+            for i in c..n {
                 w.push(self[i].clone());
             }
-            &self[a..b].clone_from_slice(&w);
+
+            // https://stackoverflow.com/questions/66417950/how-to-assign-to-a-slice-range
+            (*self).clone_from_slice(&w);
         }
         inv
     }
