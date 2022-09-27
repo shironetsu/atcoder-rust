@@ -1,102 +1,100 @@
 #![allow(unused_imports)]
 #![allow(non_snake_case)]
-use proconio::{input, fastout};
-use proconio::marker::{Bytes, Chars, Isize1, Usize1};
-use std::fmt::{Write, Display};
-use std::collections::*;
-use maplit::*;
 use itertools::*;
-use superslice::{Ext, Ext2};
+use maplit::*;
 use nalgebra::{Matrix3, Vector3};
+use proconio::marker::{Bytes, Chars, Isize1, Usize1};
+use proconio::{fastout, input};
+use std::collections::*;
+use std::fmt::{Display, Write};
+use superslice::{Ext, Ext2};
 
 #[fastout]
 fn main() {
-    input!{
+    input! {
         N: usize,
         XY: [(i64, i64);N],
         M: usize,
     }
-    let mut mat = Matrix3::identity();
-    let mut mats = Vec::with_capacity(M+1);
-    mats.push(mat.clone());
+    let mut m = Matrix3::identity();
+    let mut mm = Vec::with_capacity(M + 1);
+    mm.push(m);
     let r = Matrix3::new(
-        0, 1, 0,
-        -1, 0, 0,
+        0, 1, 0, 
+        -1, 0, 0, 
         0, 0, 1
     );
     let s = Matrix3::new(
-        0, -1, 0,
-        1, 0, 0,
+        0, -1, 0, 
+        1, 0, 0, 
         0, 0, 1
     );
 
-    for _ in 0..M{
-        input!{
+    for _ in 0..M {
+        input! {
             t: i32,
         }
         match t {
             1 => {
-                mat = r * mat;
-                mats.push(mat.clone());
+                m = r * m;
+                mm.push(m);
             }
             2 => {
-                mat = s * mat;
-                mats.push(mat.clone());
+                m = s * m;
+                mm.push(m);
             }
             3 => {
-                input!{
+                input! {
                     p: i64,
                 }
                 let a = Matrix3::new(
-                    -1, 0, 2 * p,
-                    0, 1, 0,
+                    -1, 0, 2 * p, 
+                    0, 1, 0, 
                     0, 0, 1
                 );
-                mat = a * mat;
-                mats.push(mat.clone());
-            },
+                m = a * m;
+                mm.push(m);
+            }
             4 => {
-                input!{
+                input! {
                     p: i64,
                 }
                 let a = Matrix3::new(
-                    1, 0, 0,
-                    0, -1, 2*p,
+                    1, 0, 0, 
+                    0, -1, 2 * p, 
                     0, 0, 1
                 );
-                mat = a * mat;
-                mats.push(mat.clone());
-            },
+                m = a * m;
+                mm.push(m);
+            }
             _ => unreachable!(),
         }
     }
 
-    input!{
+    input! {
         Q: usize,
         AB: [(usize, Usize1);Q],
     }
 
-    for &(a, b) in AB.iter(){
+    for &(a, b) in AB.iter() {
         let (x, y) = XY[b];
         let v = Vector3::new(x, y, 1);
-        let w = mats[a] * v;
+        let w = mm[a] * v;
         println!("{} {}", w[0], w[1]);
     }
-    
 }
 //______________________________________________________________________________
 //
 pub trait Answer {
-    fn fmt(&self)->String;
-    fn fmtl(&self)->String;
+    fn fmt(&self) -> String;
+    fn fmtl(&self) -> String;
     fn ans(&self);
     fn ansl(&self);
 }
 
 impl<T: Display> Answer for Vec<T> {
-    fn fmt(&self)->String {
-        self
-            .iter()
+    fn fmt(&self) -> String {
+        self.iter()
             .map(|x| format!("{}", x))
             .collect::<Vec<_>>()
             .join(" ")
@@ -106,9 +104,8 @@ impl<T: Display> Answer for Vec<T> {
         println!("{}", self.fmt());
     }
 
-    fn fmtl(&self)->String {
-        self
-            .iter()
+    fn fmtl(&self) -> String {
+        self.iter()
             .map(|x| format!("{}", x))
             .collect::<Vec<_>>()
             .join("\n")
@@ -135,4 +132,3 @@ macro_rules! input_edges {
         let $ad = $ad;
     };
 }
-
