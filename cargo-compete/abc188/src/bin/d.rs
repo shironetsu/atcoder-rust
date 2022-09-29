@@ -8,11 +8,36 @@ use maplit::*;
 use itertools::*;
 use superslice::{Ext, Ext2};
 
+
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        C: i64,
+        abc: [(i64, i64, i64);N],
     }
+
+    let mut p = vec![];
+
+    for &(a, b, c) in abc.iter(){
+        p.push((a, c));
+        p.push((b+1, -c));
+    }
+
+    p.sort();
+    let mut ans = 0;
+    let mut i = 0;
+    let mut q = 0;
+    while i + 1 < p.len() {
+        q += p[i].1;
+        let l = p[i].0;
+        let r = p[i+1].0;
+        ans += q.min(C) * (r - l);
+        i += 1;
+    }
+
+    println!("{}", ans);
+
 
     
 }
