@@ -11,6 +11,16 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
+        T: usize,
+    }
+
+    for _ in 0..T{
+        input!{
+            N: i64,
+            S: i64,
+            K: i64,
+        }
+
         
     }
 

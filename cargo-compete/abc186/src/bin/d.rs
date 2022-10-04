@@ -11,8 +11,17 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        mut A: [i64;N],
     }
+
+    A.sort();
+    let mut sum = 0;
+    for i in 0..N{
+        sum += i as i64 * A[i] - (N-i-1) as i64 * A[i];
+    }
+
+    println!("{}", sum);
 
     
 }
