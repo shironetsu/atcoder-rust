@@ -12,6 +12,22 @@ fn ad(x: i64, y:i64)->bool{
     (x+y==0) || (x-y==0) || (x.abs()+y.abs() <= 3)
 }
 
+fn ad2(x:i64, y:i64)->bool{
+    for dx in -3..=3i64{
+        for dy in -3..=3i64{
+            if dx.abs() + dy.abs() > 3 {
+                continue;
+            }
+            let p = x + dx;
+            let q = y + dy;
+            if p + q == 0 || p - q == 0 {
+                return true
+            }
+        }
+    }
+    return false
+}
+
 #[fastout]
 fn main() {
     input!{
@@ -28,7 +44,7 @@ fn main() {
         0
     } else if ad(c, d) {
         1
-    } else if (c-d).abs()&1 == 0 || (c.abs()+d.abs()) <= 6{
+    } else if (c-d).abs()&1 == 0 || (c.abs()+d.abs()) <= 6 || ad2(c, d){
         2
     } else {
         3

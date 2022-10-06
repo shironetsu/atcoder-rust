@@ -11,8 +11,37 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        A: usize,
+        B: usize,
+        C: usize,
     }
+
+    let M = 100;
+    let mut dp = vec![vec![vec![0f64;M+1];M+1];M+1];
+    for i in 0..=M{
+        for j in 0..=M{
+            for k in 0..=M{
+                if i.max(j).max(k) == M {
+                    dp[i][j][k] = 0f64;
+                }
+            }
+        }
+    }
+
+    for i in (0..M).rev(){
+        for j in (0..M).rev(){
+            for k in (0..M).rev(){
+                let m = i + j + k;
+                dp[i][j][k] = (i as f64/m as f64) * dp[i+1][j][k] 
+                            + (j as f64/m as f64) * dp[i][j+1][k]
+                            + (k as f64/m as f64) * dp[i][j][k+1] 
+                            + 1f64;
+            }
+        }
+    }
+
+    println!("{}", dp[A][B][C]);
+
 
     
 }
