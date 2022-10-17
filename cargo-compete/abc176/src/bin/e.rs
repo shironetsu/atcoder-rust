@@ -11,10 +11,33 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        H: usize,
+        W: usize,
+        M: usize,
+        hw: [(Usize1, Usize1);M],
     }
 
+    let mut row = vec![0;H];
+    let mut col = vec![0;W];
+    for &(h, w) in hw.iter(){
+        row[h] += 1;
+        col[w] += 1;
+    }
+    let &rmax = row.iter().max().unwrap();
+    let &cmax = col.iter().max().unwrap();
+    let hh = row.iter().copied().enumerate().filter(|&(i, r)|r==rmax).collect_vec();
+    let ww = col.iter().copied().enumerate().filter(|&(j, c)|c==cmax).collect_vec();
     
+    let cross = hw.iter().filter(|&&(h, w)|(row[h],col[w])==(rmax, cmax)).count();
+    let ans = if cross == hh.len() * ww.len() {
+        rmax + cmax - 1
+    } else {
+        rmax + cmax
+    };
+
+    println!("{}", ans);
+
+
 }
 //______________________________________________________________________________
 //
