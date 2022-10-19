@@ -124,6 +124,14 @@ cargo snippet -tvscode > <スニペット.code-snippetsのパス>
 
 みたいなことができる。
 
+### BTreeSet の `range` メソッド
+
+に `Range` を渡すと double-ended イテレーターが返る。
+右から `next`、左から `next_back` で `Option` を取り出せる。
+
+- [BTreeSet in std::collections \- Rust](https://doc.rust-lang.org/std/collections/struct.BTreeSet.html#method.range)
+- [DoubleEndedIterator in std::iter \- Rust](https://doc.rust-lang.org/std/iter/trait.DoubleEndedIterator.html)
+
 ## グラフ
 
 何回書いたか分からない。スニペットにする。
@@ -259,6 +267,11 @@ assert_eq!(iter.next(), None);
 
 [Iterator in std::iter \- Rust](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter)
 
+### find
+「ある条件を満たす要素が存在するか」は`find().is_some`　を使うと良い。`exists()` や `includes()` はない。
+
+[Iterator in std::iter \- Rust](https://doc.rust-lang.org/stable/std/iter/trait.Iterator.html#method.find)
+
 ## 桁あふれ
 
 `vec!` とか `btreemap!` とかでサボって痛い目を見がち。`let mut ans = 0i64`とかで初期化するのが良いか？
@@ -342,3 +355,45 @@ vec.extend(option)
 ```
 [Rustに関するチラ裏](https://zenn.dev/manukeno/scraps/f617c9dd9c7811)
 
+## 線形代数
+AtCoderで利用できる線形代数関連のクレートは、
+- [ndarray v0.13.0](https://docs.rs/ndarray/0.13.0/ndarray/index.html)
+- [nalgebra v0.20.0](https://docs.rs/nalgebra/0.20.0/nalgebra/index.html)
+
+の2つ。アルゴリズムの実装はnalgebraの方が充実している。
+
+### 行列式
+
+ndarray に `determinant` があるが、成分が浮動小数点（`f32`, `f64`）の場合にしか対応していない。
+
+[nalgebra::base::Matrix \- Rust](https://docs.rs/nalgebra/0.20.0/nalgebra/base/struct.Matrix.html#method.determinant)
+
+こんな感じで怒られる：
+
+```
+error[E0599]: no method named `determinant` found for struct `nalgebra::base::matrix::Matrix<i64, nalgebra::base::dimension::U3, nalgebra::base::dimension::U3, nalgebra::base::array_storage::ArrayStorage<i64, nalgebra::base::dimension::U3, nalgebra::base::dimension::U3>>` in the current scope
+  --> src/bin/c.rs:31:22
+   |
+31 |                 if m.determinant() == 0 {
+   |                      ^^^^^^^^^^^ method not found in `nalgebra::base::matrix::Matrix<i64, nalgebra::base::dimension::U3, nalgebra::base::dimension::U3, nalgebra::base::array_storage::ArrayStorage<i64, nalgebra::base::dimension::U3, nalgebra::base::dimension::U3>>`
+   |
+   = note: the method `determinant` exists but the following trait bounds were not satisfied:
+           `i64 : alga::general::complex::ComplexField`
+```
+
+整数型が複素数体トレイト（[alga::general::complex::ComplexField](https://docs.rs/alga/0.9.3/alga/general/trait.ComplexField.html)）を備えていないのがだめらしい。
+
+内部で[LU分解](https://ja.wikipedia.org/wiki/LU%E5%88%86%E8%A7%A3) を使っているとのことなので、切り捨てのない除算ができないことが本質だろう。
+
+浮動小数点数に変換して適当な範囲で誤差を許容するか、2x2や3x3くらいなら自前で実装した方がいい。
+
+## 数値関連の変換
+### `char`　→ `{integer}`
+
+- `c.to_digit(10).unwrap()`
+
+`to_digit()` は `Opion<u32>` を返す。
+
+[How to convert a Rust char to an integer so that '1' becomes 1? \- Stack Overflow](https://stackoverflow.com/questions/43983414/how-to-convert-a-rust-char-to-an-integer-so-that-1-becomes-1)
+
+- `(c as u8 - b'0') as i32`
