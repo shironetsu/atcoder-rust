@@ -7,14 +7,89 @@ use std::collections::*;
 use maplit::*;
 use itertools::*;
 use superslice::{Ext, Ext2};
+use std::rc::Rc;
+
+#[derive(PartialOrd, PartialEq, Ord, Eq, Clone, Copy, Debug)]
+pub enum Query{
+    Add(i64),
+    Delete,
+    Save(i64),
+    Load(i64),
+}
+
+#[derive(PartialOrd, PartialEq, Ord, Eq, Clone, Copy, Debug)]
+pub struct Entry {
+    prev: Option<usize>,
+    value: i64,
+}
 
 #[fastout]
 fn main() {
     input!{
-        
+        Q: usize,
     }
 
-    
+    let mut q = Vec::<Query>::with_capacity(Q);
+
+    for _ in 0..Q{
+        input!{
+            s: String,
+        }
+
+        match s.as_str() {
+            "ADD" => {
+                input!{
+                    x: i64,
+                }
+                q.push(Query::Add(x));
+            },
+            "DELETE" => {
+                q.push(Query::Delete);
+            },
+            "SAVE" => {
+                input!{
+                    y: i64,
+                }
+                q.push(Query::Save(y));
+            },
+            "LOAD" => {
+                input!{
+                    z: i64,
+                }
+                q.push(Query::Load(z));
+            },
+            _ => unreachable!()
+        }
+    }
+
+    let mut entries = vec![];
+    let mut note = BTreeMap::<i64, Option<usize>>::new();
+    let mut c = None;
+
+    let mut ans = Vec::with_capacity(Q);
+
+    for &qq in q.iter(){
+        match qq {
+            Query::Add(x) => {
+                entries.push(Entry { prev: c, value: x });
+                c = Some(entries.len()-1);
+            },
+            Query::Delete => {
+                if let Some(i) = c {
+                    c = entries[i].prev;
+                }
+            },
+            Query::Save(y) => {
+                note.insert(y, c);
+            },
+            Query::Load(z) => {
+                c = *note.get(&z).unwrap_or(&None);
+            }
+        }
+        ans.push(c.map_or(-1, |i| entries[i].value));
+    }
+
+    ans.ans();
 }
 //______________________________________________________________________________
 //
