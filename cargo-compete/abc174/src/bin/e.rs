@@ -11,8 +11,26 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        K: i64,
+        A: [i64;N],
     }
+
+    let mut l = 0;
+    let mut r = 10i64.pow(9);
+
+    while (l-r).abs() > 1 {
+        let m = (l+r)/2;
+        let k = A.iter().map(|&a|num_integer::div_ceil(a, m)-1).sum::<i64>();
+        if k <= K {
+            r = m;
+        } else {
+            l = m;
+        }
+    }
+
+    println!("{}", r);
+
 
     
 }

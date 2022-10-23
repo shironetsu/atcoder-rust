@@ -11,8 +11,43 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        Q: usize,
+        c: [Usize1;N],
+        lr: [(Usize1, usize);Q],
     }
+
+    let mut a = vec![0;N+1];
+    let mut e = vec![false;N];
+    for i in 0..N{
+        a[i+1] = if !e[c[i]] {
+            e[c[i]] = true;
+            a[i]+1
+        } else {
+            a[i]
+        };
+    }
+
+    let mut b = vec![0;N+1];
+    let mut e = vec![false;N];
+    for i in 0..N{
+        b[i+1] = if !e[c[N-i-1]] {
+            e[c[N-i-1]] = true;
+            b[i]+1
+        } else {
+            b[i]
+        };
+    }
+
+    let mut ans = vec![0;Q];
+    for i in 0..Q{
+        let (l, r) = lr[i];
+        ans[i] = a[r]-a[l]+b[N-r]-b[N-l];
+    }
+
+    ans.ansl();
+
+
 
     
 }

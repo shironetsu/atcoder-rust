@@ -11,8 +11,13 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        c: Chars,
     }
+
+    let r = c.iter().filter(|&&x|x=='R').count();
+    let ans = c.iter().take(r).filter(|&&x|x=='W').count();
+    println!("{}", ans);
 
     
 }
