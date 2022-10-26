@@ -11,10 +11,57 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        M: usize,
+        K: i64,
+        A: [i64;N],
+        B: [i64;M],
     }
 
+    let mut AA = vec![0;N+1];
+    for i in 0..N{
+        AA[i+1] = AA[i] + A[i];
+    }
+
+    let mut BB = vec![0;M+1];
+    for i in 0..M{
+        BB[i+1] = BB[i] + B[i];
+    }
+
+    let mut ans = 0;
+
+    for i in 0..=N{
+        let m = K - AA[i];
+        if m < 0 {
+            break;
+        }
+        let j = BB.upper_bound(&m);
+        ans.chmax(i+j-1);
+    }
     
+    println!("{}", ans);
+}
+pub trait Change<T: PartialOrd> {
+    fn chmin(&mut self, rhs: Self) -> bool;
+    fn chmax(&mut self, rhs: Self) -> bool;
+}
+impl<T: PartialOrd> Change<T> for T {
+    fn chmax(&mut self, rhs: Self) -> bool {
+        if *self < rhs {
+            *self = rhs;
+            true
+        } else {
+            false
+        }
+    }
+    fn chmin(&mut self, rhs: Self) -> bool {
+        if *self > rhs {
+            *self = rhs;
+            true
+        } else {
+            false
+        }
+    }
 }
 //______________________________________________________________________________
 //

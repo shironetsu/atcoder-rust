@@ -11,6 +11,8 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
+        N: i64,
+        M: i64,
         
     }
 

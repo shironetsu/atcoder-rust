@@ -11,8 +11,16 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: i64,
     }
+
+    let mut ans = 0i64;
+    for m in 1..=N{
+        let k = num_integer::div_floor(N, m);
+        ans += (m * (1+k) * k) >> 1;
+    }
+
+    println!("{}", ans);
 
     
 }
