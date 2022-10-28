@@ -11,7 +11,26 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        A: [i64;N],
+        Q: usize,
+        BC: [(i64,i64);Q],
+    }
+
+    let mut m = BTreeMap::<i64, i64>::new();
+    for &a in A.iter(){
+        *m.entry(a).or_default() += 1;
+    }
+
+    let mut sum = m.iter().map(|(&k, &v)|k*v).sum::<i64>();
+    for &(b, c) in BC.iter(){
+        if m.contains_key(&b) {
+            let &k = m.get(&b).unwrap();
+            *m.entry(c).or_default() += k;
+            m.remove(&b);
+            sum += (-b+c)*k;
+        }
+        println!("{}", sum);
     }
 
     

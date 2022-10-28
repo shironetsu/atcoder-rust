@@ -12,18 +12,13 @@ fn name(N: i64)->String{
     let a = (0..26).map(|i|(b'a' + i as u8) as char).collect_vec();
     let mut v = vec![];
     for k in 0.. {
-        let d = 26i64.pow(k);
-        if N <= d {
+        let u = (1..=k).map(|i|26i64.pow(i)).sum::<i64>();
+        if N - 1 < u {
             break;
         }
-        //let e = if k == 0 { 0 } else { d };
-        if k == 0 {
-            let r = (N-1).rem_euclid(26);
-            v.push(a[r as usize]);
-        } else {
-            let r = ((N - d).rem_euclid(d*26)/d).rem_euclid(26);
-            v.push(a[r as usize]);
-        }
+
+        let b = (N-1-u) .rem_euclid(26i64.pow(k+1)) / 26i64.pow(k);
+        v.push(a[b as usize])
     }
     v.reverse();
     v.to_string()

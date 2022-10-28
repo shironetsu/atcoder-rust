@@ -11,10 +11,13 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        a: [i32;N],
     }
 
-    
+    let sum = a.iter().fold(0, |acc, &x| acc ^ x);
+    let ans = a.iter().map(|&x| x ^ sum).collect_vec();
+    ans.ans();
 }
 //______________________________________________________________________________
 //
