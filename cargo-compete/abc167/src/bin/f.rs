@@ -11,8 +11,11 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        S: [Chars;N],
     }
+
+    
 
     
 }
