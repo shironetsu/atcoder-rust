@@ -11,9 +11,42 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        S: Chars,
+        Q: usize,
     }
 
+    let mut S = S.into_iter().collect::<VecDeque<_>>();
+    let mut rev = false;
+    for _ in 0..Q{
+        input!{
+            t: i32,
+        }
+        match t {
+            1 => {
+                rev = !rev;
+            },
+            2 => {
+                input!{
+                    f: i32,
+                    c: char,
+                }
+                match (rev, f) {
+                    (false, 1) | (true, 2) => S.push_front(c),
+                    (false, 2) | (true, 1) => S.push_back(c),
+                    _ => unreachable!(),
+                }
+            },
+            _ => unreachable!(),
+        }
+    }
+
+    let ans = if rev {
+        S.iter().rev().collect::<String>()
+    } else {
+        S.iter().collect::<String>()
+    };
+
+    println!("{}", ans);
     
 }
 //______________________________________________________________________________

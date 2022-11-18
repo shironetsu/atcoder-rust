@@ -11,8 +11,22 @@ use superslice::{Ext, Ext2};
 #[fastout]
 fn main() {
     input!{
-        
+        N: usize,
+        P: i64,
+        S: Chars,
     }
+
+    let mut t = vec![0i64;N+1];
+    for i in 0..N{
+        let a = (S[i] as u8 - b'0') as i64;
+        t[i+1] = (10*t[i]+a).rem_euclid(P);
+    }
+    let mut m = vec![0i64;P as usize+1];
+    for &tt in t.iter(){
+        m[tt as usize] += 1;
+    }
+    let ans = m.into_iter().map(|x|x*(x-1)/2).sum::<i64>();
+    println!("{}", ans);
 
     
 }

@@ -15,11 +15,11 @@ fn main() {
         B: usize,
     }
 
-    let mut inf = 1_000;
+    let mut inf = 2_000;
     let mut t = vec![vec![inf;B+1];A+1];
-    for y in (0..=200).rev(){
-        let a = y * 108 / 100 - y;
-        let b = y * 110 / 100 - y;
+    for y in (1..2000).rev(){
+        let a = y * 8 / 100;
+        let b = y * 10 / 100;
         if a <= A && b <= B {
             t[a][b] = y;
         }
@@ -27,9 +27,6 @@ fn main() {
 
     if t[A][B] < inf {
         let mut y = t[A][B];
-        if y == 0 {
-            y += 100;
-        }
         println!("{}", y);
     } else {
         println!("{}", -1);
